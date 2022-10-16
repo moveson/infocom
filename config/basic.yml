@@ -1,0 +1,23 @@
+locations:
+  quiet_meadow:
+    description: "You find yourself in a quiet meadow surrounded by trees. A path runs through going east and west."
+    neighbors:
+      east: sunlit_hill
+      west: twisted_trees
+  sunlit_hill:
+    description: "You climb to the top of a sunny hill. A path leads to the west."
+    neighbors:
+      west: quiet_meadow
+  twisted_trees:
+    description: "You find yourself in a strange grove of twisted trees. A steep slope leads down to the north."
+    neighbors:
+      east: quiet_meadow
+      north: deadly_pit
+  deadly_pit:
+    description: "You have fallen into a deep pit."
+    neighbors:
+
+items:
+  sword:
+    description: "a long sword with a golden hilt and strange engravings on the blade."
+    location_key: quiet_meadow

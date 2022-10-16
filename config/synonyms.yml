@@ -9,6 +9,8 @@ w: go west
 west: go west
 
 # Verbs
+examine: describe
 grab: get
+inspect: describe
 inv: inventory
 take: get

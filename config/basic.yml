@@ -1,6 +1,6 @@
 locations:
   quiet_meadow:
-    description: "You find yourself in a quiet meadow surrounded by trees. A path runs through going east and west."
+    description: "You find yourself in a quiet meadow surrounded by trees. A path runs through going east and west. There is also a faint track leading south."
     neighbors:
       east: sunlit_hill
       west: twisted_trees

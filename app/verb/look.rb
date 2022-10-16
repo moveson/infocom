@@ -2,8 +2,9 @@
 
 module Verb
   class Look < ::BaseVerb
+    # @return [String (frozen)]
     def execute
-      puts state.location.description
+      state.location.description
     end
   end
 end

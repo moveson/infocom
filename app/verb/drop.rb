@@ -2,16 +2,17 @@
 
 module Verb
   class Drop < ::BaseVerb
+    # @return [String (frozen)]
     def execute
       item = state.items[noun]
 
       if noun.nil?
-        puts "What did you want to drop?"
+        "What did you want to drop?"
       elsif item.location_key == "inventory"
-        puts "You drop the #{noun}."
         item.location_key = state.location_key
+        "You drop the #{noun}."
       else
-        puts "You aren't carrying a #{noun}."
+        "You aren't carrying a #{noun}."
       end
     end
   end

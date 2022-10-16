@@ -3,6 +3,7 @@
 require "./app/base_verb"
 require "./app/parser"
 require "./app/state"
+require "./app/utilities"
 Dir["./app/verb/*.rb"].each { |file| require file }
 
 class Main
@@ -20,10 +21,11 @@ class Main
 
       break if @state.won? || @state.lost?
 
-      print colorize(">", 1)
+      print ::Utilities.colorize(">", 1)
       command = gets.chomp
       noun, verb = ::Parser.derive_parts(command, @state)
-      execute(noun, verb)
+      response = execute(noun, verb)
+      puts ::Utilities.colorize(response, 0, 33) if response.present?
     end
 
     if @state.won?
@@ -39,7 +41,7 @@ class Main
 
   def self.describe_location
     puts
-    puts colorize(@state.location.name, 1)
+    puts ::Utilities.colorize(@state.location.name, 1)
     puts @state.location.description unless @state.location.described
     @state.location.described = true
   end
@@ -50,19 +52,18 @@ class Main
     end
   end
 
+  # @param [String, nil] verb
+  # @param [String, nil] noun
+  # @return [String (frozen)]
   def self.execute(verb, noun)
-    return if verb.nil?
+    return if verb.blank?
 
     verb_class = "::Verb::#{verb.titleize}".safe_constantize
 
     if verb_class.present?
       verb_class.execute(noun, @state)
     else
-      puts "I don't know how to #{verb}."
+      "I don't know how to #{verb}."
     end
-  end
-
-  def self.colorize(text, color_code)
-    "\e[#{color_code}m#{text}\e[0m"
   end
 end

@@ -2,18 +2,17 @@
 
 module Verb
   class Go < ::BaseVerb
+    # @return [String (frozen)]
     def execute
-      if noun.nil?
-        puts "You will need to say where you want me to go."
-        return
-      end
-
       new_location_key = state.location.neighbors[noun]
 
-      if new_location_key.nil?
-        puts "I can't go #{noun} from here."
+      if noun.nil?
+        "You will need to say where you want me to go."
+      elsif new_location_key.nil?
+        "I can't go #{noun} from here."
       else
         state.location_key = new_location_key
+        ""
       end
     end
   end

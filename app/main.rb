@@ -7,7 +7,6 @@ Dir["./app/verb/*.rb"].each { |file| require file }
 class Main
   def self.start
     @state = ::State.new
-    @verbs = ::Verb.constants.select { |c| ::Verb.const_get(c).is_a? Class }.map { |c| c.to_s.downcase }.freeze
 
     puts "Welcome to Infocom, an adventure inspired by the magical text-based games of the 1980s."
     puts "Type 'help' if you need help."
@@ -55,8 +54,7 @@ class Main
   end
 
   def self.execute(verb, noun)
-    if @verbs.include?(verb)
-      verb_class = "::Verb::#{verb.titleize}".constantize
+    if (verb_class = "::Verb::#{verb.titleize}".safe_constantize)
       verb_class.execute(noun, @state)
     else
       puts "I don't know how to #{verb}."

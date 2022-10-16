@@ -3,6 +3,7 @@
 Item = Struct.new(
   :name,
   :description,
+  :text,
   :location_key,
   keyword_init: true
 )

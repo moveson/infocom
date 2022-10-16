@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "./app/base_verb"
+require "./app/parser"
 require "./app/state"
 Dir["./app/verb/*.rb"].each { |file| require file }
 
@@ -21,7 +22,7 @@ class Main
 
       print colorize(">", 1)
       command = gets.chomp
-      noun, verb = parse(command)
+      noun, verb = ::Parser.derive_parts(command, @state)
       execute(noun, verb)
     end
 
@@ -47,10 +48,6 @@ class Main
     @state.items_at_location.each do |item|
       puts "You see #{item.description}"
     end
-  end
-
-  def self.parse(command)
-    command.split
   end
 
   def self.execute(verb, noun)

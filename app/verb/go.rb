@@ -8,12 +8,12 @@ module Verb
         return
       end
 
-      new_location_key = state.location.neighbors[noun.to_sym]
+      new_location_key = state.location.neighbors[noun]
 
       if new_location_key.nil?
         puts "I can't go #{noun} from here."
       else
-        state.location_key = new_location_key.to_sym
+        state.location_key = new_location_key
       end
     end
   end

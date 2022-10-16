@@ -3,11 +3,13 @@
 module Verb
   class Drop < ::BaseVerb
     def execute
+      item = state.items[noun]
+
       if noun.nil?
         puts "What did you want to drop?"
-      elsif state.items[noun.to_sym].location_key == :inventory
+      elsif item.location_key == "inventory"
         puts "You drop the #{noun}."
-        state.items[noun.to_sym].location_key = state.location_key
+        item.location_key = state.location_key
       else
         puts "You aren't carrying a #{noun}."
       end

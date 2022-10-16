@@ -38,10 +38,6 @@ class State
     items.values.select { |item| item.location_key == :inventory }
   end
 
-  def in_progress?
-    !won? && !lost? && !quit?
-  end
-
   def lost?
     location_key == :deadly_pit
   end

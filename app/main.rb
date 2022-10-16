@@ -18,7 +18,7 @@ class Main
       describe_location
       describe_items
 
-      break unless @state.in_progress?
+      break if @state.won? || @state.lost?
 
       print colorize(">", 1)
       command = gets.chomp

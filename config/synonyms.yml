@@ -1,0 +1,6 @@
+take: get
+inv: inventory
+e: go east
+n: go north
+s: go south
+w: go west

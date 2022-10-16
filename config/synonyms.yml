@@ -1,6 +1,14 @@
-take: get
-inv: inventory
+# Directions
 e: go east
+east: go east
 n: go north
+north: go north
 s: go south
+south: go south
 w: go west
+west: go west
+
+# Verbs
+grab: get
+inv: inventory
+take: get

@@ -4,8 +4,6 @@ module Verb
   class Describe < ::BaseVerb
     # @return [String (frozen)]
     def execute
-      item = state.items[noun]
-
       if noun.nil?
         "You will need to say what you want me to describe."
       elsif item.nil?

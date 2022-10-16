@@ -22,4 +22,8 @@ class BaseVerb
   private
 
   attr_reader :noun, :state
+
+  def item
+    state.items[noun]
+  end
 end

@@ -4,8 +4,6 @@ module Verb
   class Drop < ::BaseVerb
     # @return [String (frozen)]
     def execute
-      item = state.items[noun]
-
       if noun.nil?
         "What did you want to drop?"
       elsif item.location_key == "inventory"

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "./app/base_verb"
+require "./app/endgame"
 require "./app/parser"
 require "./app/state"
 require "./app/utilities"
@@ -26,18 +27,10 @@ class Main
       noun, verb = ::Parser.derive_parts(command, @state)
       response = execute(noun, verb)
       puts ::Utilities.colorize(response, 0, 33) if response.present?
-      set_end_state
+      ::Endgame.set_state(@state)
     end
 
-    if @state.won?
-      puts "You made it to the hill with the sword. Congratulations, you won!"
-    elsif @state.quit?
-      puts "Hope to see you again soon. Bye!"
-    else
-      puts "Sorry, you lost."
-    end
-
-    puts
+    ::Endgame.print_message(@state)
   end
 
   def self.describe_location
@@ -65,14 +58,6 @@ class Main
       verb_class.execute(noun, @state)
     else
       "I don't know how to #{verb}."
-    end
-  end
-
-  def self.set_end_state
-    if @state.location_key == "deadly_pit"
-      @state.lost = true
-    elsif @state.location_key == "sunlit_hill" && @state.items["sword"].location_key == "inventory"
-      @state.won = true
     end
   end
 end

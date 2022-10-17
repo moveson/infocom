@@ -16,6 +16,7 @@ class State
     @location_key = hash["player_location"]
     @items = hash["items"].map { |key, value| [key, item_from_raw_hash(key, value)] }.to_h
     @locations = hash["locations"].map { |key, value| [key, location_from_raw_hash(key, value)] }.to_h
+    initialize_endgame_booleans
   end
 
   attr_accessor :location_key, :lost, :quit, :won
@@ -50,5 +51,11 @@ class State
     location.neighbors ||= {}
     location.name = key.titleize
     location
+  end
+
+  def initialize_endgame_booleans
+    @lost = false
+    @quit = false
+    @won = false
   end
 end

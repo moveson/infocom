@@ -24,8 +24,8 @@ class Main
 
       print ::Utilities.colorize(">", 1)
       command = gets.chomp
-      noun, verb = ::Parser.derive_parts(command, @state)
-      response = execute(noun, verb)
+      verb, noun = ::Parser.derive_parts(command, @state)
+      response = execute(verb, noun)
       puts ::Utilities.colorize(response, 0, 33) if response.present?
       ::Endgame.set_state(@state)
     end

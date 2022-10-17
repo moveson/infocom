@@ -9,8 +9,8 @@ require "./app/models/location"
 class State
   GAME_FILE_PATH = "./config/basic.yml"
 
-  def initialize
-    hash = YAML.load(File.read(GAME_FILE_PATH))
+  def initialize(file_path: GAME_FILE_PATH)
+    hash = YAML.load(File.read(file_path))
     @location_key = hash["player_location"]
     @items = hash["items"].map { |key, value| [key, item_from_raw_hash(key, value)] }.to_h
     @locations = hash["locations"].map { |key, value| [key, location_from_raw_hash(key, value)] }.to_h

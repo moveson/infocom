@@ -11,20 +11,15 @@ require "./app/models/location"
 class State
   GAME_FILE_PATH = "./config/basic.yml"
 
-  # @param [String] location_key
-  def initialize(location_key: "quiet_meadow")
-    @location_key = location_key
-    initialize_game
-  end
-
-  attr_accessor :location_key, :quit
-  attr_reader :locations, :items, :inventory
-
-  def initialize_game
+  def initialize
     hash = YAML.load(File.read(GAME_FILE_PATH))
+    @location_key = hash["player_location"]
     @items = hash["items"].map { |key, value| [key, item_from_raw_hash(key, value)] }.to_h
     @locations = hash["locations"].map { |key, value| [key, location_from_raw_hash(key, value)] }.to_h
   end
+
+  attr_accessor :location_key, :lost, :quit, :won
+  attr_reader :locations, :items, :inventory
 
   def items_at_location
     items.values.select { |item| item.location_key == location_key }
@@ -38,15 +33,9 @@ class State
     items.values.select { |item| item.location_key == "inventory" }
   end
 
-  def lost?
-    location_key == "deadly_pit"
-  end
-
+  alias lost? lost
   alias quit? quit
-
-  def won?
-    location_key == "sunlit_hill" && items["sword"].location_key == "inventory"
-  end
+  alias won? won
 
   private
 

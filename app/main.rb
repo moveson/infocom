@@ -26,6 +26,7 @@ class Main
       noun, verb = ::Parser.derive_parts(command, @state)
       response = execute(noun, verb)
       puts ::Utilities.colorize(response, 0, 33) if response.present?
+      set_end_state
     end
 
     if @state.won?
@@ -64,6 +65,14 @@ class Main
       verb_class.execute(noun, @state)
     else
       "I don't know how to #{verb}."
+    end
+  end
+
+  def self.set_end_state
+    if @state.location_key == "deadly_pit"
+      @state.lost = true
+    elsif @state.location_key == "sunlit_hill" && @state.items["sword"].location_key == "inventory"
+      @state.won = true
     end
   end
 end

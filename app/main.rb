@@ -64,7 +64,7 @@ class Main
   def self.execute(verb, noun)
     return "" if verb.blank?
 
-    verb_class = "::Verb::#{verb.titleize}".safe_constantize
+    verb_class = "::Verb::#{verb.classify}".safe_constantize
 
     if verb_class.present?
       verb_class.execute(noun, @state)

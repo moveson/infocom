@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
-require "./app/base_verb"
+require "active_support/core_ext/string/inflections"
+
+require "./app/build_initial_state"
 require "./app/endgame"
 require "./app/parser"
-require "./app/state"
 require "./app/utilities"
+
+require "./app/base_verb"
 Dir["./app/verb/*.rb"].each { |file| require file }
 
 class Main
   def self.start
-    @state = ::State.new
+    @state = ::BuildInitialState.perform
 
     puts "Welcome to Infocom, an adventure inspired by the magical text-based games of the 1980s."
     puts "Type 'help' if you need help."

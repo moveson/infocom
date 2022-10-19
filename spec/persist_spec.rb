@@ -39,8 +39,8 @@ RSpec.describe ::Persist do
     end
 
     context "when the file exists" do
-      it "returns a State object" do
-        expect(result).to be_a(::State)
+      it "returns true" do
+        expect(result).to eq(true)
       end
 
       it "modifies state attributes as expected" do
@@ -48,6 +48,22 @@ RSpec.describe ::Persist do
         expect(state.player_location_key).to eq("quiet_meadow")
         expect(state.locations).to eq(expected_locations)
         expect(state.items).to eq(expected_items)
+      end
+    end
+
+    context "when the file does not exist" do
+      let(:filename) { "does_not_exist" }
+
+      it "returns false" do
+        expect(result).to eq(false)
+      end
+
+      it "does not modify the state" do
+        result
+        expect(state.player_location_key).to be_nil
+        expect(state.locations).to be_empty
+        expect(state.items).to be_empty
+        expect(state.context).to eq(::Context.new)
       end
     end
   end

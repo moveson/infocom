@@ -4,7 +4,7 @@ module Verb
   class Look < ::BaseVerb
     # @return [String (frozen)]
     def execute
-      state.location.description
+      state.player_location.description
     end
   end
 end

@@ -34,13 +34,13 @@ class Main
 
   def self.describe_location
     puts
-    puts ::Utilities.colorize(@state.location.name, 1)
-    puts @state.location.description unless @state.location.described
-    @state.location.described = true
+    puts ::Utilities.colorize(@state.player_location.name, 1)
+    puts @state.player_location.description unless @state.player_location.described
+    @state.player_location.described = true
   end
 
   def self.describe_items
-    @state.items_at_location.each do |item|
+    @state.items_at_player_location.each do |item|
       puts "You see #{item.description}"
     end
   end

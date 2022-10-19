@@ -1,13 +1,15 @@
 ---
-player_location: quiet_meadow
+player_location_key: quiet_meadow
 
 locations:
   quiet_meadow:
+    name: "Quiet Meadow"
     description: "You find yourself in a quiet meadow."
     neighbors:
       east: sunlit_hill
       west: twisted_trees
   sunlit_hill:
+    name: "Sunlit Hill"
     description: "A sunlit hill."
     described: true
     neighbors:
@@ -15,6 +17,7 @@ locations:
 
 items:
   sword:
+    name: "Sword"
     description: "a jewel-encrusted sword"
     text: "Sunshine makes me happy :)"
     location_key: quiet_meadow

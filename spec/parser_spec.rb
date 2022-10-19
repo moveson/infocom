@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require "./app/parser"
-require "./app/state"
+require "./app/models/state"
 
 RSpec.describe ::Parser do
   subject { described_class.new(command, state) }
   let(:command) { nil }
-  let(:state) { State.new }
+  let(:state) { ::State.new }
 
   describe "initialize" do
     it "builds an object" do

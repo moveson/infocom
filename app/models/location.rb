@@ -6,4 +6,12 @@ Location = Struct.new(
   :neighbors,
   :described,
   keyword_init: true
-)
+) do
+
+  # Default values go here
+  def initialize(*)
+    super
+    self.neighbors ||= {}
+    self.described ||= false
+  end
+end

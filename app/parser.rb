@@ -10,19 +10,8 @@ class Parser
   # @param [String] command
   # @param [State] state
   # @return [Array<String>]
-  def self.derive_parts(command, state)
-    new(command, state).derive_parts
-  end
-
-  # @param [String] command
-  # @param [State] state
-  def initialize(command, state)
-    @command = command.to_s
-    @state = state
-  end
-
-  # @return [Array<String>]
-  def derive_parts
+  def self.derive_parts(command, _state)
+    command = command.to_s
     first, second = command.downcase.split
     synonym = SYNONYMS[first]
     return [first, second] if synonym.nil?
@@ -33,8 +22,4 @@ class Parser
 
     [first, second]
   end
-
-  private
-
-  attr_reader :command, :state
 end

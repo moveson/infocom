@@ -4,18 +4,11 @@ require "./app/parser"
 require "./app/models/state"
 
 RSpec.describe ::Parser do
-  subject { described_class.new(command, state) }
   let(:command) { nil }
   let(:state) { ::State.new }
 
-  describe "initialize" do
-    it "builds an object" do
-      subject
-    end
-  end
-
   describe "#derive_parts" do
-    let(:result) { subject.derive_parts }
+    let(:result) { described_class.derive_parts(command, state) }
 
     context "when command is two words with no known synonyms" do
       let(:command) { "go east" }

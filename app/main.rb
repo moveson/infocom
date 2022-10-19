@@ -15,22 +15,21 @@ class Main
     puts "Type 'help' if you need help."
 
     loop do
-      break if @state.quit?
+      endgame_condition = ::Endgame.condition(@state)
+      break if endgame_condition == "quit"
 
       describe_location
       describe_items
 
-      break if @state.won? || @state.lost?
+      break if endgame_condition == "lost" || endgame_condition == "won"
 
       print ::Utilities.colorize(">", 1)
       command = gets.chomp
-      verb, noun = ::Parser.derive_parts(command, @state)
-      response = execute(verb, noun)
+      response = parse_and_execute(command)
       puts ::Utilities.colorize(response, 0, 33) if response.present?
-      ::Endgame.set_state(@state)
     end
 
-    ::Endgame.print_message(@state)
+    puts "#{::Endgame.message(@state)}\n\n"
   end
 
   def self.describe_location
@@ -46,11 +45,21 @@ class Main
     end
   end
 
+  # @param [String] command
+  # @return [String (frozen)]
+  def self.parse_and_execute(command)
+    verb, noun = ::Parser.derive_parts(command, @state)
+    response = execute(verb, noun)
+    @state.context.verb = verb
+    @state.context.noun = noun
+    response
+  end
+
   # @param [String, nil] verb
   # @param [String, nil] noun
   # @return [String (frozen)]
   def self.execute(verb, noun)
-    return if verb.blank?
+    return "" if verb.blank?
 
     verb_class = "::Verb::#{verb.titleize}".safe_constantize
 

@@ -4,6 +4,7 @@ require "active_support/core_ext/hash/keys"
 require "active_support/core_ext/string/inflections"
 require "yaml"
 
+require "./app/models/context"
 require "./app/models/item"
 require "./app/models/location"
 
@@ -15,15 +16,12 @@ class State
     @location_key = hash["player_location"]
     @items = hash["items"].map { |key, value| [key, item_from_raw_hash(key, value)] }.to_h
     @locations = hash["locations"].map { |key, value| [key, location_from_raw_hash(key, value)] }.to_h
+    @context = ::Context.new(hash["context"] || {})
     initialize_endgame_booleans
   end
 
-  attr_reader :locations, :items
-  attr_accessor :location_key, :lost, :quit, :won
-
-  alias lost? lost
-  alias quit? quit
-  alias won? won
+  attr_reader :locations, :items, :context
+  attr_accessor :location_key
 
   def items_at_location
     items.values.select { |item| item.location_key == location_key }

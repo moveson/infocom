@@ -1,23 +1,32 @@
 # frozen_string_literal: true
 
 class Endgame
-  def self.set_state(state)
+  # @param [State] state
+  # @return [String (frozen)]
+  def self.condition(state)
     if state.location_key == "deadly_pit"
-      state.lost = true
+      "lost"
     elsif state.location_key == "sunlit_hill" && state.items["sword"].location_key == "inventory"
-      state.won = true
+      "won"
+    elsif state.context.verb == "quit"
+      "quit"
+    else
+      "in_progress"
     end
   end
 
-  def self.print_message(state)
-    message = if state.won?
-                "You made it to the hill with the sword. Congratulations, you won!"
-              elsif state.quit?
-                "Hope to see you again soon. Bye!"
-              else
-                "Sorry, you lost."
-              end
-
-    puts "#{message}\n\n"
+  # @param [State] state
+  # @return [String (frozen)]
+  def self.message(state)
+    case condition(state)
+    when "won"
+      "You made it to the hill with the sword. Congratulations, you won!"
+    when "quit"
+      "Hope to see you again soon. Bye!"
+    when "lost"
+      "Sorry, you lost."
+    else
+      "Something went wrong and I had to exit."
+    end
   end
 end

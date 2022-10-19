@@ -5,7 +5,7 @@ require "active_support/core_ext/string/inflections"
 require "./app/build_initial_state"
 require "./app/endgame"
 require "./app/parser"
-require "./app/utilities"
+require "./app/text"
 
 require "./app/base_verb"
 Dir["./app/verb/*.rb"].each { |file| require file }
@@ -26,10 +26,10 @@ class Main
 
       break if endgame_condition == "lost" || endgame_condition == "won"
 
-      print ::Utilities.colorize(">", 1)
+      print ::Text.colorize(">", 1)
       command = gets.chomp
       response = parse_and_execute(command)
-      puts ::Utilities.colorize(response, 0, 33) if response.present?
+      puts ::Text.colorize(response, 0, 33) if response.present?
     end
 
     puts "#{::Endgame.message(@state)}\n\n"
@@ -37,7 +37,7 @@ class Main
 
   def self.describe_location
     puts
-    puts ::Utilities.colorize(@state.player_location.name, 1)
+    puts ::Text.colorize(@state.player_location.name, 1)
     puts @state.player_location.description unless @state.player_location.described
     @state.player_location.described = true
   end

@@ -11,7 +11,7 @@ module Verb
       elsif item.location_key == state.player_location_key || item.location_key == "inventory"
         if item.opened?
           "The #{noun} is already open."
-        elsif item.has_capacity? && item.unlocked?
+        elsif item.container? && item.unlocked?
           item.opened = true
           "You open the #{noun}."
         else

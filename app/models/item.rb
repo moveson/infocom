@@ -26,7 +26,7 @@ Item = Struct.new(
   alias opened? opened
   alias locked? locked
 
-  def has_capacity?
+  def container?
     capacity > 0
   end
 

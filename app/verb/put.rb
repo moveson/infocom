@@ -15,10 +15,10 @@ module Verb
             if proposed_container == item
               "You can't put something into itself."
             elsif state.items_at_player_location.include?(proposed_container) || state.inventory.include?(proposed_container)
-              if proposed_container.has_capacity? && proposed_container.opened?
+              if proposed_container.container? && proposed_container.opened?
                 item.location_key = "items.#{proposed_container.id}"
                 "You put the #{noun} into the #{object}."
-              elsif proposed_container.has_capacity? && proposed_container.closed?
+              elsif proposed_container.container? && proposed_container.closed?
                 "The #{object} is closed."
               else
                 "You can't put anything into the #{object}."

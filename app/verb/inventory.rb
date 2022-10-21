@@ -5,7 +5,13 @@ module Verb
     # @return [String (frozen)]
     def execute
       if state.inventory.present?
-        state.inventory.map { |item| "You have a #{item.name.downcase}" }.join("\n")
+        text_segments = ["You are carrying:"]
+
+        state.inventory.each do |item|
+          text_segments << "  a #{item.name.downcase}"
+        end
+
+        text_segments.join("\n")
       else
         "You are not carrying anything."
       end

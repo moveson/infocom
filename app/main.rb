@@ -51,23 +51,23 @@ class Main
   # @param [String] command
   # @return [String (frozen)]
   def self.parse_and_execute(command)
-    verb, noun = ::Parser.derive_parts(command, @state)
-    response = execute(verb, noun)
-    @state.context.verb = verb
-    @state.context.noun = noun
+    grammar = ::Parser.derive_parts(command, @state)
+    response = execute(grammar)
+    @state.context.verb = grammar.verb
+    @state.context.noun = grammar.noun
     response
   end
 
-  # @param [String, nil] verb
-  # @param [String, nil] noun
+  # @param [::Grammar] grammar
   # @return [String (frozen)]
-  def self.execute(verb, noun)
+  def self.execute(grammar)
+    verb = grammar.verb
     return "" if verb.blank?
 
     verb_class = "::Verb::#{verb.classify}".safe_constantize
 
     if verb_class.present?
-      verb_class.execute(noun, @state)
+      verb_class.execute(grammar, @state)
     else
       "I don't know how to #{verb}."
     end

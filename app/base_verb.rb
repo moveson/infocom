@@ -1,17 +1,19 @@
 # frozen_string_literal: true
 
 class BaseVerb
-  # @param [String] noun
+  # @param [Grammar] grammar
   # @param [State] state
   # @return [String]
-  def self.execute(noun, state)
-    new(noun, state).execute
+  def self.execute(grammar, state)
+    new(grammar, state).execute
   end
 
-  # @param [String] noun
+  # @param [String] grammar
   # @param [State] state
-  def initialize(noun, state)
-    @noun = noun
+  def initialize(grammar, state)
+    @noun = grammar.noun
+    @preposition = grammar.preposition
+    @object = grammar.object
     @state = state
   end
 
@@ -21,7 +23,7 @@ class BaseVerb
 
   private
 
-  attr_reader :noun, :state
+  attr_reader :noun, :preposition, :object, :state
 
   def item
     state.items[noun]

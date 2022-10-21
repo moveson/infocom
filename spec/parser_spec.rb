@@ -12,32 +12,32 @@ RSpec.describe ::Parser do
 
     context "when command is two words with no known synonyms" do
       let(:command) { "go east" }
-      it { expect(result).to eq(%w[go east]) }
+      it { expect(result).to eq(::Grammar.new(verb: "go", noun: "east")) }
     end
 
     context "when command is two words with a known verb synonym" do
       let(:command) { "take sword" }
-      it { expect(result).to eq(%w[get sword]) }
+      it { expect(result).to eq(::Grammar.new(verb: "get", noun: "sword")) }
     end
 
     context "when command is one word with a one-word synonym" do
       let(:command) { "inv" }
-      it { expect(result).to eq(["inventory", nil]) }
+      it { expect(result).to eq(::Grammar.new(verb: "inventory")) }
     end
 
     context "when command is one word with a two-word synonym" do
       let(:command) { "e" }
-      it { expect(result).to eq(%w[go east]) }
+      it { expect(result).to eq(::Grammar.new(verb: "go", noun: "east")) }
     end
 
     context "when command is an empty string" do
       let(:command) { "" }
-      it { expect(result).to eq([nil, nil]) }
+      it { expect(result).to eq(::Grammar.new) }
     end
 
     context "when command is nil" do
       let(:command) { nil }
-      it { expect(result).to eq([nil, nil]) }
+      it { expect(result).to eq(::Grammar.new) }
     end
   end
 end

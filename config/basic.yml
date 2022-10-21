@@ -25,8 +25,8 @@ locations:
   description: "You have fallen into a deep pit."
   neighbors:
 - id: tropical_forest
-  name: "Tropical Forest"
-  description: "You are in a stand of tropical trees, vines, and corpse flowers. A path leads north."
+  name: Tropical Forest
+  description: You are in a stand of tropical trees, vines, and corpse flowers. A path leads north.
   neighbors:
     west: twisted_trees
     north: quiet_meadow
@@ -40,6 +40,17 @@ items:
   capacity: 100
   lockable: true
   locked: true
+  openable: true
+  opened: false
+- id: dias
+  name: stone dias
+  description: a smooth stone dias about the size of a table
+  location_key: sunlit_hill
+  size: 999
+  capacity: 100
+  openable: false
+  lockable: false
+  locked: false
   opened: false
 - id: key
   name: Key

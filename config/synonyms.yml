@@ -18,6 +18,7 @@ inspect: describe
 inv: inventory
 moonwalk: dance
 move: go
+place: put
 run: go
 take: get
 walk: go

@@ -30,7 +30,7 @@ State = Struct.new(
     @items_by_id ||= items.index_by(&:id)
   end
 
-  def items_contained_within(item)
+  def children_of_item(item)
     items.select { |candidate_item| candidate_item.location_key == "items.#{item.id}"}
   end
 

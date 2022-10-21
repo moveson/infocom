@@ -10,6 +10,7 @@ Item = Struct.new(
   :capacity,
   :lockable,
   :locked,
+  :openable,
   :opened,
   :can_unlock,
   keyword_init: true
@@ -19,31 +20,38 @@ Item = Struct.new(
   def initialize(*)
     super
     self.capacity ||= 0
+    self.lockable ||= false
     self.locked ||= false
+    self.openable ||= false
     self.opened ||= false
     self.can_unlock ||= []
   end
 
   alias lockable? lockable
   alias locked? locked
+  alias openable? openable
   alias opened? opened
 
   def container?
-    capacity > 0
+    openable? && capacity > 0
   end
 
   def closed?
     !opened?
   end
 
-  def contained?
+  def child_of_item?
     location_key.start_with?("item")
   end
 
-  def container_id
-    return unless contained?
+  def parent_item_id
+    return unless child_of_item?
 
     location_key.split(".").last
+  end
+
+  def surface?
+    !openable? && capacity > 0
   end
 
   def unlocked?

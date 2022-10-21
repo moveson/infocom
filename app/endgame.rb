@@ -6,7 +6,7 @@ class Endgame
   def self.condition(state)
     if state.player_location_key == "deadly_pit"
       "lost"
-    elsif state.player_location_key == "sunlit_hill" && state.items_by_id["sword"].location_key == "inventory"
+    elsif state.player_location_key == "sunlit_hill" && state.items_by_id["sword"].location_key == "items.dias"
       "won"
     elsif state.context.verb == "quit"
       "quit"
@@ -20,7 +20,7 @@ class Endgame
   def self.message(state)
     case condition(state)
     when "won"
-      "You made it to the hill with the sword. Congratulations, you won!"
+      "You have reunited the sword with its home. Congratulations, you won!"
     when "quit"
       "Hope to see you again soon. Bye!"
     when "lost"

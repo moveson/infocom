@@ -8,7 +8,8 @@ Item = Struct.new(
   :size,
   :capacity,
   :locked,
-  :open,
+  :opened,
+  :can_unlock,
   keyword_init: true
 ) do
 
@@ -17,6 +18,17 @@ Item = Struct.new(
     super
     self.capacity ||= 0
     self.locked ||= false
-    self.open ||= false
+    self.opened ||= false
+  end
+
+  alias opened? opened
+  alias locked? locked
+
+  def has_capacity?
+    capacity > 0
+  end
+
+  def unlocked?
+    !locked?
   end
 end

@@ -14,4 +14,7 @@ examine: describe
 grab: get
 inspect: describe
 inv: inventory
+move: go
+run: go
 take: get
+walk: go

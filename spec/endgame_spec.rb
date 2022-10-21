@@ -13,7 +13,7 @@ RSpec.describe ::Endgame do
 
     before do
       state.player_location_key = player_location_key
-      state.items["sword"] = ::Item.new(location_key: sword_location_key)
+      state.items = [::Item.new(id: "sword", location_key: sword_location_key)]
     end
 
     context "when no win or loss criteria are met" do

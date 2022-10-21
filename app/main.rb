@@ -45,6 +45,22 @@ class Main
   def self.describe_items
     @state.items_at_player_location.each do |item|
       puts "You see #{item.description}"
+      if item.opened?
+        describe_contents(item)
+      end
+    end
+  end
+
+  # @param [::Item] item
+  def self.describe_contents(item)
+    contents = @state.items_contained_within(item)
+
+    if contents.present?
+      contents.each do |contained_item|
+        puts "  The #{item.name.downcase} contains a #{contained_item.name.downcase}"
+      end
+    else
+      puts "  The #{item.name.downcase} is open"
     end
   end
 

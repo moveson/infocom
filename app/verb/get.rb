@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "./app/player_constants"
+require "./app/interactions"
 
 module Verb
   class Get < ::BaseVerb
@@ -10,7 +11,7 @@ module Verb
         "You will need to say what you want me to get."
       elsif item.nil?
         "I don't see a #{noun} here."
-      elsif item.location_key == state.player_location_key
+      elsif ::Interactions.item_takeable?(item, state)
         remaining_capacity = PlayerConstants::CARRY_CAPACITY_SIZE - state.inventory.sum(&:size)
 
         if remaining_capacity >= item.size

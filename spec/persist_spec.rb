@@ -27,16 +27,31 @@ RSpec.describe ::Persist do
       }
     end
 
-    let(:expected_items) do
-      {
-        "sword" => ::Item.new(
-          "name" => "Sword",
-          "description" => "a jewel-encrusted sword",
-          "text" => "Sunshine makes me happy :)",
-          "location_key" => "quiet_meadow",
-        )
-      }
+    let(:chest_item) do
+      ::Item.new(
+        id: "chest",
+        name: "Chest",
+        description: "a large oaken chest with a heavy lock",
+        location_key: "tropical_forest",
+        size: 999,
+        capacity: 100,
+        locked: true,
+        opened: false
+      )
     end
+
+    let(:sword_item) do
+      ::Item.new(
+        id: "sword",
+        name: "Sword",
+        description: "a jewel-encrusted sword",
+        text: "Sunshine makes me happy :)",
+        location_key: "items.chest",
+        size: 30
+      )
+    end
+
+    let(:expected_items) { [sword_item, chest_item] }
 
     context "when the file exists" do
       it "returns true" do
@@ -47,7 +62,7 @@ RSpec.describe ::Persist do
         result
         expect(state.player_location_key).to eq("quiet_meadow")
         expect(state.locations).to eq(expected_locations)
-        expect(state.items).to eq(expected_items)
+        expect(state.items).to match_array(expected_items)
       end
     end
 
@@ -80,11 +95,26 @@ RSpec.describe ::Persist do
 ---
 player_location_key: quiet_meadow
 items:
-  sword:
-    name: Sword
-    description: a jewel-encrusted sword
-    text: Sunshine makes me happy :)
-    location_key: quiet_meadow
+- id: sword
+  name: Sword
+  description: a jewel-encrusted sword
+  text: Sunshine makes me happy :)
+  location_key: items.chest
+  size: 30
+  capacity: 0
+  locked: false
+  opened: false
+  can_unlock: []
+- id: chest
+  name: Chest
+  description: a large oaken chest with a heavy lock
+  text:
+  location_key: tropical_forest
+  size: 999
+  capacity: 100
+  locked: true
+  opened: false
+  can_unlock: []
 locations:
   quiet_meadow:
     name: Quiet Meadow

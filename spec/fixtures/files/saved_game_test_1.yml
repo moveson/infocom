@@ -16,8 +16,17 @@ locations:
       west: quiet_meadow
 
 items:
-  sword:
-    name: "Sword"
-    description: "a jewel-encrusted sword"
-    text: "Sunshine makes me happy :)"
-    location_key: quiet_meadow
+- id: sword
+  name: Sword
+  description: a jewel-encrusted sword
+  text: Sunshine makes me happy :)
+  location_key: items.chest
+  size: 30
+- id: chest
+  name: Chest
+  description: a large oaken chest with a heavy lock
+  location_key: tropical_forest
+  size: 999
+  capacity: 100
+  locked: true
+  opened: false

@@ -26,6 +26,6 @@ class BaseVerb
   attr_reader :noun, :preposition, :object, :state
 
   def item
-    state.items[noun]
+    state.items_by_id[noun]
   end
 end

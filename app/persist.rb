@@ -48,7 +48,7 @@ class Persist
 
     hash = ::YAML.load(File.read(file_path))
     state.player_location_key = hash["player_location_key"]
-    state.items = hash["items"].transform_values { |value| ::Item.new(value) }
+    state.items = hash["items"].map { |raw_item| ::Item.new(raw_item) }
     state.locations = hash["locations"].transform_values { |value| ::Location.new(value) }
     state.context = ::Context.new(hash["context"] || {})
     true

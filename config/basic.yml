@@ -32,22 +32,23 @@ locations:
       north: quiet_meadow
 
 items:
-  chest:
-    name: Chest
-    description: a large oaken chest with a heavy lock
-    location_key: tropical_forest
-    size: 999
-    capacity: 100
-    locked: true
-    open: false
-  key:
-    name: Key
-    description: a solid iron key
-    location_key: twisted_trees
-    size: 3
-  sword:
-    name: "Sword"
-    description: "a long sword with a golden hilt and strange engravings on the blade."
-    text: "Sunshine makes me happy :)"
-    location_key: items.chest
-    size: 30
+- id: chest
+  name: Chest
+  description: a large oaken chest with a heavy lock
+  location_key: tropical_forest
+  size: 999
+  capacity: 100
+  locked: true
+  opened: false
+- id: key
+  name: Key
+  description: a solid iron key
+  location_key: twisted_trees
+  size: 3
+  can_unlock: chest
+- id: sword
+  name: "Sword"
+  description: "a long sword with a golden hilt and strange engravings on the blade."
+  text: "Sunshine makes me happy :)"
+  location_key: items.chest
+  size: 30

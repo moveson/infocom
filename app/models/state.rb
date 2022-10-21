@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "active_support/core_ext/hash/keys"
+require "active_support/core_ext/enumerable"
 require "./app/models/context"
 
 State = Struct.new(
@@ -14,13 +15,21 @@ State = Struct.new(
   # Default values go here
   def initialize(*)
     super
-    self.items ||= {}
+    self.items ||= []
     self.locations ||= {}
     self.context ||= ::Context.new
   end
 
+  def items_by_id
+    @items_by_id ||= items.index_by(&:id)
+  end
+
+  def items_contained_within(item)
+    items.select { |candidate_item| candidate_item.location_key == "items.#{item.id}"}
+  end
+
   def items_at_player_location
-    items.values.select { |item| item.location_key == player_location_key }
+    items.select { |item| item.location_key == player_location_key }
   end
 
   def player_location
@@ -28,13 +37,13 @@ State = Struct.new(
   end
 
   def inventory
-    items.values.select { |item| item.location_key == "inventory" }
+    items.select { |item| item.location_key == "inventory" }
   end
 
   def to_yaml
     hash = {
       player_location_key: player_location_key,
-      items: items.transform_values(&:to_h),
+      items: items.map(&:to_h),
       locations: locations.transform_values(&:to_h),
       context: context.to_h,
     }.deep_stringify_keys

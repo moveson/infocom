@@ -11,6 +11,7 @@ class BaseVerb
   # @param [String] grammar
   # @param [State] state
   def initialize(grammar, state)
+    @grammar = grammar
     @noun = grammar.noun
     @preposition = grammar.preposition
     @object = grammar.object
@@ -23,7 +24,7 @@ class BaseVerb
 
   private
 
-  attr_reader :noun, :preposition, :object, :state
+  attr_reader :grammar, :noun, :preposition, :object, :state
 
   def item
     state.items_by_id[noun]

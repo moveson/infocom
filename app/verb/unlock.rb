@@ -12,6 +12,8 @@ module Verb
         if state.inventory.any? { |item| item.can_unlock == noun }
           item.locked = false
           "You unlock the #{noun}."
+        elsif item.lockable?
+          "You don't have anything that will unlock the #{noun}."
         else
           "You are unable to unlock the #{noun}."
         end

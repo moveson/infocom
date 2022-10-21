@@ -106,6 +106,7 @@ RSpec.describe ::Persist do
           location_key: items.chest
           size: 30
           capacity: 0
+          lockable:
           locked: false
           opened: false
           can_unlock: []
@@ -116,6 +117,7 @@ RSpec.describe ::Persist do
           location_key: tropical_forest
           size: 999
           capacity: 100
+          lockable:
           locked: true
           opened: false
           can_unlock: []

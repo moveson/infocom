@@ -8,6 +8,7 @@ Item = Struct.new(
   :location_key,
   :size,
   :capacity,
+  :lockable,
   :locked,
   :opened,
   :can_unlock,
@@ -23,8 +24,9 @@ Item = Struct.new(
     self.can_unlock ||= []
   end
 
-  alias opened? opened
+  alias lockable? lockable
   alias locked? locked
+  alias opened? opened
 
   def container?
     capacity > 0

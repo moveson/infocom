@@ -14,6 +14,8 @@ module Verb
         elsif item.container? && item.unlocked?
           item.opened = true
           "You open the #{noun}."
+        elsif item.container? && item.lockable?
+          "The #{noun} is locked."
         else
           "You are unable to open the #{noun}."
         end

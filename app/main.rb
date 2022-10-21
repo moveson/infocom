@@ -30,9 +30,11 @@ class Main
       command = gets.chomp
       response = parse_and_execute(command)
       puts ::Text.colorize(response, 0, 33) if response.present?
+      @state.turn_count += 1
     end
 
     puts "#{::Endgame.message(@state)}\n\n"
+    puts "Number of turns: #{@state.turn_count}\n\n"
   end
 
   def self.describe_location

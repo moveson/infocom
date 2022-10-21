@@ -136,6 +136,7 @@ RSpec.describe ::Persist do
         context:
           verb:
           noun:
+        turn_count: 0
       CONTENTS
     end
 

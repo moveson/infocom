@@ -2,18 +2,18 @@
 player_location_key: quiet_meadow
 
 locations:
-  quiet_meadow:
-    name: "Quiet Meadow"
-    description: "You find yourself in a quiet meadow."
-    neighbors:
-      east: sunlit_hill
-      west: twisted_trees
-  sunlit_hill:
-    name: "Sunlit Hill"
-    description: "A sunlit hill."
-    described: true
-    neighbors:
-      west: quiet_meadow
+- id: quiet_meadow
+  name: Quiet Meadow
+  description: You find yourself in a quiet meadow.
+  neighbors:
+    east: sunlit_hill
+    west: twisted_trees
+- id: sunlit_hill
+  name: Sunlit Hill
+  description: A sunlit hill.
+  described: true
+  neighbors:
+    west: quiet_meadow
 
 items:
 - id: sword

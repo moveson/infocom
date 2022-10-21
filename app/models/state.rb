@@ -16,8 +16,12 @@ State = Struct.new(
   def initialize(*)
     super
     self.items ||= []
-    self.locations ||= {}
+    self.locations ||= []
     self.context ||= ::Context.new
+  end
+
+  def locations_by_id
+    @locations_by_id ||= locations.index_by(&:id)
   end
 
   def items_by_id
@@ -33,7 +37,7 @@ State = Struct.new(
   end
 
   def player_location
-    locations[player_location_key]
+    locations_by_id[player_location_key]
   end
 
   def inventory
@@ -44,7 +48,7 @@ State = Struct.new(
     hash = {
       player_location_key: player_location_key,
       items: items.map(&:to_h),
-      locations: locations.transform_values(&:to_h),
+      locations: locations.map(&:to_h),
       context: context.to_h,
     }.deep_stringify_keys
 

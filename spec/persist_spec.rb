@@ -10,21 +10,27 @@ RSpec.describe ::Persist do
     let(:result) { described_class.restore_using_filename!(state, filename) }
     let(:state) { ::State.new }
     let(:filename) { "saved_game_test_1" }
-    let(:expected_locations) do
-      {
-        "quiet_meadow" => ::Location.new(
-          "name" => "Quiet Meadow",
-          "description" => "You find yourself in a quiet meadow.",
-          "described" => false,
-          "neighbors" => { "east" => "sunlit_hill", "west" => "twisted_trees" },
-        ),
-        "sunlit_hill" => ::Location.new(
-          "name" => "Sunlit Hill",
-          "description" => "A sunlit hill.",
-          "described" => true,
-          "neighbors" => { "west" => "quiet_meadow" },
-        )
-      }
+    let(:expected_locations) { [meadow_location, hill_location] }
+    let(:expected_items) { [chest_item, sword_item] }
+
+    let(:meadow_location) do
+      ::Location.new(
+        "id" => "quiet_meadow",
+        "name" => "Quiet Meadow",
+        "description" => "You find yourself in a quiet meadow.",
+        "described" => false,
+        "neighbors" => { "east" => "sunlit_hill", "west" => "twisted_trees" },
+      )
+    end
+
+    let(:hill_location) do
+      ::Location.new(
+        "id" => "sunlit_hill",
+        "name" => "Sunlit Hill",
+        "description" => "A sunlit hill.",
+        "described" => true,
+        "neighbors" => { "west" => "quiet_meadow" },
+      )
     end
 
     let(:chest_item) do
@@ -51,8 +57,6 @@ RSpec.describe ::Persist do
       )
     end
 
-    let(:expected_items) { [sword_item, chest_item] }
-
     context "when the file exists" do
       it "returns true" do
         expect(result).to eq(true)
@@ -61,7 +65,7 @@ RSpec.describe ::Persist do
       it "modifies state attributes as expected" do
         result
         expect(state.player_location_key).to eq("quiet_meadow")
-        expect(state.locations).to eq(expected_locations)
+        expect(state.locations).to match_array(expected_locations)
         expect(state.items).to match_array(expected_items)
       end
     end
@@ -92,46 +96,46 @@ RSpec.describe ::Persist do
 
     let(:expected_contents) do
       <<~CONTENTS
----
-player_location_key: quiet_meadow
-items:
-- id: sword
-  name: Sword
-  description: a jewel-encrusted sword
-  text: Sunshine makes me happy :)
-  location_key: items.chest
-  size: 30
-  capacity: 0
-  locked: false
-  opened: false
-  can_unlock: []
-- id: chest
-  name: Chest
-  description: a large oaken chest with a heavy lock
-  text:
-  location_key: tropical_forest
-  size: 999
-  capacity: 100
-  locked: true
-  opened: false
-  can_unlock: []
-locations:
-  quiet_meadow:
-    name: Quiet Meadow
-    description: You find yourself in a quiet meadow.
-    neighbors:
-      east: sunlit_hill
-      west: twisted_trees
-    described: false
-  sunlit_hill:
-    name: Sunlit Hill
-    description: A sunlit hill.
-    neighbors:
-      west: quiet_meadow
-    described: true
-context:
-  verb:
-  noun:
+        ---
+        player_location_key: quiet_meadow
+        items:
+        - id: sword
+          name: Sword
+          description: a jewel-encrusted sword
+          text: Sunshine makes me happy :)
+          location_key: items.chest
+          size: 30
+          capacity: 0
+          locked: false
+          opened: false
+          can_unlock: []
+        - id: chest
+          name: Chest
+          description: a large oaken chest with a heavy lock
+          text:
+          location_key: tropical_forest
+          size: 999
+          capacity: 100
+          locked: true
+          opened: false
+          can_unlock: []
+        locations:
+        - id: quiet_meadow
+          name: Quiet Meadow
+          description: You find yourself in a quiet meadow.
+          neighbors:
+            east: sunlit_hill
+            west: twisted_trees
+          described: false
+        - id: sunlit_hill
+          name: Sunlit Hill
+          description: A sunlit hill.
+          neighbors:
+            west: quiet_meadow
+          described: true
+        context:
+          verb:
+          noun:
       CONTENTS
     end
 

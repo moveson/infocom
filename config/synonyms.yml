@@ -10,11 +10,19 @@ w: go west
 west: go west
 
 # Verbs
+boogie: dance
 examine: describe
 grab: get
+how: what
 inspect: describe
 inv: inventory
+moonwalk: dance
 move: go
 run: go
 take: get
 walk: go
+waltz: dance
+when: what
+where: what
+who: what
+why: what

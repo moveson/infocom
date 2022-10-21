@@ -30,6 +30,10 @@ Item = Struct.new(
     capacity > 0
   end
 
+  def closed?
+    !opened?
+  end
+
   def contained?
     location_key.start_with?("item")
   end

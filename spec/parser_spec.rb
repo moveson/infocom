@@ -35,6 +35,11 @@ RSpec.describe ::Parser do
       it { expect(result).to eq(::Grammar.new(verb: "get", noun: "sword")) }
     end
 
+    context "when the command is four words" do
+      let(:command) { "put sword into chest" }
+      it { expect(result).to eq(::Grammar.new(verb: "put", noun: "sword", preposition: "into", object: "chest")) }
+    end
+
     context "when command is an empty string" do
       let(:command) { "" }
       it { expect(result).to eq(::Grammar.new) }

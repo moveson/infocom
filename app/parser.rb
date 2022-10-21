@@ -20,14 +20,14 @@ class Parser
     command = command.to_s.downcase
     words = command.split
     words.reject! { |word| word.in?(IGNORED_WORDS) }
-    first, second = words
+    first, second, third, fourth = words
     synonym = SYNONYMS[first]
-    return ::Grammar.new(verb: first, noun: second) if synonym.nil?
+    return ::Grammar.new(verb: first, noun: second, preposition: third, object: fourth) if synonym.nil?
 
     synonym_first, synonym_second = synonym.split
     first = synonym_first if synonym_first.present?
     second = synonym_second if synonym_second.present?
 
-    ::Grammar.new(verb: first, noun: second)
+    ::Grammar.new(verb: first, noun: second, preposition: third, object: fourth)
   end
 end

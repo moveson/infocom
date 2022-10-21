@@ -3,26 +3,26 @@ player_location_key: quiet_meadow
 
 locations:
 - id: quiet_meadow
-  name: "Quiet Meadow"
-  description: "You find yourself in a quiet meadow surrounded by trees. A path runs through going east and west. There is also a faint track leading south."
+  name: Quiet Meadow
+  description: You find yourself in a quiet meadow surrounded by trees. A path runs through going east and west. There is also a faint track leading south.
   neighbors:
     east: sunlit_hill
     west: twisted_trees
     south: tropical_forest
 - id: sunlit_hill
-  name: "Sunlit Hill"
-  description: "You climb to the top of a sunny hill. A path leads to the west."
+  name: Sunlit Hill
+  description: You climb to the top of a sunny hill. A path leads to the west.
   neighbors:
     west: quiet_meadow
 - id: twisted_trees
-  name: "Twisted Trees"
-  description: "You find yourself in a strange grove of twisted trees. A steep slope leads down to the north."
+  name: Twisted Trees
+  description: You find yourself in a strange grove of twisted trees. A steep slope leads down to the north.
   neighbors:
     east: quiet_meadow
     north: deadly_pit
 - id: deadly_pit
-  name: "Deadly Pit"
-  description: "You have fallen into a deep pit."
+  name: Deadly Pit
+  description: You have fallen into a deep pit.
   neighbors:
 - id: tropical_forest
   name: Tropical Forest
@@ -59,8 +59,8 @@ items:
   size: 3
   can_unlock: chest
 - id: sword
-  name: "Sword"
-  description: "a long sword with a golden hilt and strange engravings on the blade."
-  text: "Sunshine makes me happy :)"
+  name: sword
+  description: a long sword with a golden hilt and strange engravings on the blade.
+  text: Sunshine makes me happy :)
   location_key: items.chest
   size: 30

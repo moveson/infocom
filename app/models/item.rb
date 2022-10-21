@@ -5,5 +5,18 @@ Item = Struct.new(
   :description,
   :text,
   :location_key,
+  :size,
+  :capacity,
+  :locked,
+  :open,
   keyword_init: true
-)
+) do
+
+  # Default values go here
+  def initialize(*)
+    super
+    self.capacity ||= 0
+    self.locked ||= false
+    self.open ||= false
+  end
+end

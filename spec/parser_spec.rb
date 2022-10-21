@@ -30,6 +30,11 @@ RSpec.describe ::Parser do
       it { expect(result).to eq(::Grammar.new(verb: "go", noun: "east")) }
     end
 
+    context "when the command contains one or more articles" do
+      let(:command) { "get the sword" }
+      it { expect(result).to eq(::Grammar.new(verb: "get", noun: "sword")) }
+    end
+
     context "when command is an empty string" do
       let(:command) { "" }
       it { expect(result).to eq(::Grammar.new) }

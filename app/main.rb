@@ -3,6 +3,8 @@
 require "active_support/core_ext/string/inflections"
 
 require "./app/build_initial_state"
+require "./app/describe_items"
+require "./app/describe_location"
 require "./app/endgame"
 require "./app/parser"
 require "./app/text"
@@ -21,8 +23,8 @@ class Main
       endgame_condition = ::Endgame.condition(@state)
       break if endgame_condition == "quit"
 
-      describe_location
-      describe_items
+      puts ::DescribeLocation.perform(@state)
+      puts ::DescribeItems.perform(@state)
 
       break if endgame_condition == "lost" || endgame_condition == "won"
 
@@ -35,45 +37,6 @@ class Main
 
     puts "#{::Endgame.message(@state)}\n\n"
     puts "Number of turns: #{@state.turn_count}\n\n"
-  end
-
-  def self.describe_location
-    puts
-    puts ::Text.colorize(@state.player_location.name, 1)
-    puts @state.player_location.description unless @state.player_location.described
-    @state.player_location.described = true
-  end
-
-  def self.describe_items
-    @state.items_at_player_location.each do |item|
-      puts "You see #{item.description}"
-      if (item.openable? && item.opened?) || item.surface?
-        describe_contents(item)
-      end
-    end
-  end
-
-  # @param [::Item] item
-  def self.describe_contents(item)
-    contents = @state.children_of_item(item)
-
-    if item.container?
-      if contents.present?
-        puts "  The #{item.name.downcase} contains:"
-        contents.each do |contained_item|
-          puts "    a #{contained_item.name.downcase}"
-        end
-      else
-        puts "  The #{item.name.downcase} is empty"
-      end
-    elsif item.surface?
-      if contents.present?
-        puts "  On the #{item.name.downcase} is:"
-        contents.each do |contained_item|
-          puts "    a #{contained_item.name.downcase}"
-        end
-      end
-    end
   end
 
   # @param [String] command

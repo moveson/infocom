@@ -41,8 +41,10 @@ RSpec.describe ::Persist do
         location_key: "tropical_forest",
         size: 999,
         capacity: 100,
+        lockable: true,
         locked: true,
-        opened: false
+        openable: true,
+        opened: false,
       )
     end
 
@@ -53,7 +55,7 @@ RSpec.describe ::Persist do
         description: "a jewel-encrusted sword",
         text: "Sunshine makes me happy :)",
         location_key: "items.chest",
-        size: 30
+        size: 30,
       )
     end
 
@@ -106,8 +108,9 @@ RSpec.describe ::Persist do
           location_key: items.chest
           size: 30
           capacity: 0
-          lockable:
+          lockable: false
           locked: false
+          openable: false
           opened: false
           can_unlock: []
         - id: chest
@@ -117,8 +120,9 @@ RSpec.describe ::Persist do
           location_key: tropical_forest
           size: 999
           capacity: 100
-          lockable:
+          lockable: true
           locked: true
+          openable: true
           opened: false
           can_unlock: []
         locations:

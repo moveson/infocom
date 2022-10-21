@@ -19,8 +19,10 @@ RSpec.describe ::State do
         location_key: "tropical_forest",
         size: 999,
         capacity: 100,
+        lockable: true,
         locked: true,
-        opened: false
+        openable: true,
+        opened: false,
       )
     end
 

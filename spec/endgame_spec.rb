@@ -22,7 +22,7 @@ RSpec.describe ::Endgame do
 
     context "when win criteria are met" do
       let(:player_location_key) { "sunlit_hill" }
-      let(:sword_location_key) { "inventory" }
+      let(:sword_location_key) { "items.dias" }
 
       it { expect(result).to eq("won") }
     end

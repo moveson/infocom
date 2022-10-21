@@ -28,5 +28,7 @@ items:
   location_key: tropical_forest
   size: 999
   capacity: 100
+  lockable: true
   locked: true
+  openable: true
   opened: false

@@ -7,11 +7,10 @@ require "yaml"
 require "./app/models/grammar"
 
 class ParseCommand
-  SYNONYMS_FILE_PATH = "./config/synonyms.yml"
-  SYNONYMS = YAML.load(File.read(SYNONYMS_FILE_PATH))
-
-  IGNORED_WORDS_FILE_PATH = "./config/ignored_words.yml"
-  IGNORED_WORDS = YAML.load(File.read(IGNORED_WORDS_FILE_PATH))
+  RULES_FILE_PATH = "./config/rules.yml"
+  RULES_HASH = YAML.load(File.read(RULES_FILE_PATH))
+  SYNONYMS = RULES_HASH["synonyms"]
+  IGNORED_WORDS = RULES_HASH["ignored_words"]
 
   DIRECTIONS = %w[north east south west]
 

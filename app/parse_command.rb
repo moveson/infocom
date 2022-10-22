@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "active_support"
-require "active_support/core_ext/object/inclusion"
 require "yaml"
 
 require "./app/models/grammar"
@@ -14,28 +12,41 @@ class ParseCommand
   IMPLICIT_VERBS = RULES_HASH["implicit_verbs"]
 
   # @param [String] command
-  # @param [State] state
+  # @param [State] _state
   # @return ::Grammar
   def self.perform(command, _state)
-    command = command.to_s.downcase
-    words = command.split
-    remove_ignored_words(words)
-    map_synonyms(words)
-    add_implicit_verb(words)
+    new(command, _state).perform
+  end
+
+  # @param [String] command
+  # @param [State] _state
+  def initialize(command, _state)
+    @words = command.to_s.downcase.split
+  end
+
+  # @return ::Grammar
+  def perform
+    remove_ignored_words
+    map_synonyms
+    add_implicit_verb
 
     ::Grammar.new(verb: words[0], noun: words[1], preposition: words[2], object: words[3])
   end
 
-  private_class_method def self.remove_ignored_words(words)
-    words.reject! { |word| word.in?(IGNORED_WORDS) }
+  private
+
+  attr_reader :words
+
+   def remove_ignored_words
+    words.reject! { |word| IGNORED_WORDS.include?(word) }
   end
 
-  private_class_method def self.map_synonyms(words)
-    words.map! { |word| SYNONYMS[word].present? ? SYNONYMS[word] : word }
+  def map_synonyms
+    words.map! { |word| SYNONYMS[word] || word }
   end
 
-  private_class_method def self.add_implicit_verb(words)
+   def add_implicit_verb
     implicit_verb = IMPLICIT_VERBS[words.first]
-    words.unshift(implicit_verb) if implicit_verb.present?
+    words.unshift(implicit_verb) if implicit_verb
   end
 end

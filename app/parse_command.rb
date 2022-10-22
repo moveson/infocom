@@ -7,20 +7,19 @@ require "./app/models/grammar"
 class ParseCommand
   RULES_FILE_PATH = "./config/rules.yml"
   RULES_HASH = YAML.load(File.read(RULES_FILE_PATH))
+
   SYNONYMS = RULES_HASH["synonyms"]
   IGNORED_WORDS = RULES_HASH["ignored_words"]
   IMPLICIT_VERBS = RULES_HASH["implicit_verbs"]
 
   # @param [String] command
-  # @param [State] _state
   # @return ::Grammar
-  def self.perform(command, _state)
-    new(command, _state).perform
+  def self.perform(command)
+    new(command).perform
   end
 
   # @param [String] command
-  # @param [State] _state
-  def initialize(command, _state)
+  def initialize(command)
     @words = command.to_s.downcase.split
   end
 

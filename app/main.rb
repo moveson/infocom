@@ -42,7 +42,7 @@ class Main
   # @param [String] command
   # @return [String (frozen)]
   def self.parse_and_execute(command)
-    grammar = ::ParseCommand.perform(command, @state)
+    grammar = ::ParseCommand.perform(command)
     response = execute(grammar)
     @state.context.verb = grammar.verb
     @state.context.noun = grammar.noun

@@ -1,4 +1,5 @@
 ---
+# ParseCommand replaces these keys with the respective values
 synonyms:
   # Directions
   e: east
@@ -25,6 +26,15 @@ synonyms:
   who: what
   why: what
 
+# ParseCommand ignores these words entirely
 ignored_words:
 - a
 - the
+
+# Any of the following keys found in the first word position
+# will result in the associated value being added as the verb
+implicit_verbs:
+  east: go
+  north: go
+  south: go
+  west: go

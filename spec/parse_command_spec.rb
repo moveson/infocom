@@ -25,7 +25,12 @@ RSpec.describe ::ParseCommand do
       it { expect(result).to eq(::Grammar.new(verb: "inventory")) }
     end
 
-    context "when command is one word with a two-word synonym" do
+    context "when command is a direction without a verb" do
+      let(:command) { "east" }
+      it { expect(result).to eq(::Grammar.new(verb: "go", noun: "east")) }
+    end
+
+    context "when command is a direction synonym without a verb" do
       let(:command) { "e" }
       it { expect(result).to eq(::Grammar.new(verb: "go", noun: "east")) }
     end

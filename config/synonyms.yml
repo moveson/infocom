@@ -1,13 +1,9 @@
 ---
 # Directions
-e: go east
-east: go east
-n: go north
-north: go north
-s: go south
-south: go south
-w: go west
-west: go west
+e: east
+n: north
+s: south
+w: west
 
 # Verbs
 boogie: dance

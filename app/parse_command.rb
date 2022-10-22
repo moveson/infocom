@@ -13,6 +13,8 @@ class ParseCommand
   IGNORED_WORDS_FILE_PATH = "./config/ignored_words.yml"
   IGNORED_WORDS = YAML.load(File.read(IGNORED_WORDS_FILE_PATH))
 
+  DIRECTIONS = %w[north east south west]
+
   # @param [String] command
   # @param [State] state
   # @return ::Grammar
@@ -20,14 +22,9 @@ class ParseCommand
     command = command.to_s.downcase
     words = command.split
     words.reject! { |word| word.in?(IGNORED_WORDS) }
-    first, second, third, fourth = words
-    synonym = SYNONYMS[first]
-    return ::Grammar.new(verb: first, noun: second, preposition: third, object: fourth) if synonym.nil?
+    words.map! { |word| SYNONYMS[word].present? ? SYNONYMS[word] : word }
+    words.unshift("go") if DIRECTIONS.include?(words[0])
 
-    synonym_first, synonym_second = synonym.split
-    first = synonym_first if synonym_first.present?
-    second = synonym_second if synonym_second.present?
-
-    ::Grammar.new(verb: first, noun: second, preposition: third, object: fourth)
+    ::Grammar.new(verb: words[0], noun: words[1], preposition: words[2], object: words[3])
   end
 end

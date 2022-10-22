@@ -44,6 +44,10 @@ Item = Struct.new(
     location_key.start_with?("item")
   end
 
+  def children_visible?
+    opened? || surface?
+  end
+
   def parent_item_id
     return unless child_of_item?
 

@@ -6,7 +6,7 @@ require "yaml"
 
 require "./app/models/grammar"
 
-class Parser
+class ParseCommand
   SYNONYMS_FILE_PATH = "./config/synonyms.yml"
   SYNONYMS = YAML.load(File.read(SYNONYMS_FILE_PATH))
 
@@ -16,7 +16,7 @@ class Parser
   # @param [String] command
   # @param [State] state
   # @return ::Grammar
-  def self.derive_parts(command, _state)
+  def self.perform(command, _state)
     command = command.to_s.downcase
     words = command.split
     words.reject! { |word| word.in?(IGNORED_WORDS) }

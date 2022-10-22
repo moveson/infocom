@@ -6,7 +6,7 @@ require "./app/build_initial_state"
 require "./app/describe_items"
 require "./app/describe_location"
 require "./app/endgame"
-require "./app/parser"
+require "./app/parse_command"
 require "./app/text"
 
 require "./app/base_verb"
@@ -17,7 +17,7 @@ class Main
     @state = ::BuildInitialState.perform
 
     puts "Welcome to Infocom, an adventure inspired by the magical text-based games of the 1980s."
-    puts "Type 'help' if you need help."
+    puts "Type 'help' for instructions."
 
     loop do
       endgame_condition = ::Endgame.condition(@state)
@@ -42,7 +42,7 @@ class Main
   # @param [String] command
   # @return [String (frozen)]
   def self.parse_and_execute(command)
-    grammar = ::Parser.derive_parts(command, @state)
+    grammar = ::ParseCommand.perform(command, @state)
     response = execute(grammar)
     @state.context.verb = grammar.verb
     @state.context.noun = grammar.noun

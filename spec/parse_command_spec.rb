@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require "./app/parser"
+require "./app/parse_command"
 require "./app/models/state"
 
-RSpec.describe ::Parser do
+RSpec.describe ::ParseCommand do
   let(:command) { nil }
   let(:state) { ::State.new }
 
-  describe "#derive_parts" do
-    let(:result) { described_class.derive_parts(command, state) }
+  describe ".perform" do
+    let(:result) { described_class.perform(command, state) }
 
     context "when command is two words with no known synonyms" do
       let(:command) { "go east" }

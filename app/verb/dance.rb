@@ -6,6 +6,8 @@ require_relative "go"
 
 module Verb
   class Dance < ::BaseVerb
+    DIRECTIONS = %w[east north south west]
+
     # @return [String (frozen)]
     IN_PLACE_RESPONSES = [
       "The crowd goes wild!",
@@ -29,7 +31,7 @@ module Verb
     ].freeze
 
     def execute
-      if noun.in?(%w[east west north south])
+      if DIRECTIONS.include?(noun)
         go_response = Go.execute(grammar, state)
 
         go_response.presence || ELSEWHERE_RESPONSES.sample

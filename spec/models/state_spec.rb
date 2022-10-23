@@ -27,18 +27,22 @@ RSpec.describe ::State do
     end
 
     let(:sword_item) do
-        ::Item.new(
-          id: "sword",
-          name: "Sword",
-          description: "a jewel-encrusted sword",
-          text: "Sunshine makes me happy :)",
-          location_key: "items.chest",
-          size: 30
-        )
+      ::Item.new(
+        id: "sword",
+        name: "Sword",
+        description: "a jewel-encrusted sword",
+        text: "Sunshine makes me happy :)",
+        location_key: "items.chest",
+        size: 30
+      )
+    end
+
+    let(:expected_result) do
+      { "sword" => sword_item, "chest" => chest_item }
     end
 
     it "returns a hash of items indexed by id" do
-      expect(result).to eq({ "sword" => sword_item, "chest" => chest_item })
+      expect(result).to eq(expected_result)
     end
   end
 

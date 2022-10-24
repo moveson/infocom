@@ -40,9 +40,14 @@ RSpec.describe ::ParseCommand do
       it { expect(result).to eq(::Grammar.new(verb: "get", noun: "sword")) }
     end
 
-    context "when the command is four words" do
+    context "when the command is four words without a synonym" do
+      let(:command) { "put sword in chest" }
+      it { expect(result).to eq(::Grammar.new(verb: "put", noun: "sword", preposition: "in", object: "chest")) }
+    end
+
+    context "when the command is four words with a preposition synonym" do
       let(:command) { "put sword into chest" }
-      it { expect(result).to eq(::Grammar.new(verb: "put", noun: "sword", preposition: "into", object: "chest")) }
+      it { expect(result).to eq(::Grammar.new(verb: "put", noun: "sword", preposition: "in", object: "chest")) }
     end
 
     context "when command is an empty string" do

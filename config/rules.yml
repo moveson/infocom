@@ -26,6 +26,10 @@ synonyms:
   who: what
   why: what
 
+  # Prepositions
+  into: in
+  onto: "on"
+
 # ParseCommand ignores these words entirely
 ignored_words:
 - a

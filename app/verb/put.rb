@@ -9,10 +9,8 @@ module Verb
       if noun.nil?
         "What did you want to put?"
       elsif item.location_key == "inventory"
-        if preposition == "in" || preposition == "into"
-          Put::In.execute(grammar, state)
-        elsif preposition == "on" || preposition == "onto"
-          Put::On.execute(grammar, state)
+        if preposition_class.present?
+          preposition_class.execute(grammar, state)
         elsif preposition.nil?
           "You are going to have to say where you want to put the #{noun}."
         else

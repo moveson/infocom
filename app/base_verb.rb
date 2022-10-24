@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "active_support/core_ext/string/inflections"
+
 class BaseVerb
   # @param [Grammar] grammar
   # @param [State] state
@@ -28,5 +30,9 @@ class BaseVerb
 
   def item
     state.items_by_id[noun]
+  end
+
+  def preposition_class
+    "#{self.class.name}::#{preposition.classify}".constantize
   end
 end

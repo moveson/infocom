@@ -12,6 +12,20 @@ class ParseCommand
   IGNORED_WORDS = RULES_HASH["ignored_words"]
   IMPLICIT_VERBS = RULES_HASH["implicit_verbs"]
 
+  # The YAML spec includes many reserved words that translate to unexpected values.
+  # This code ensures everything translates into String values.
+  SYNONYMS.each do |synonym, known_word|
+    raise RuntimeError, "Unexpected synonym pair: #{synonym}, #{known_word}" unless synonym.is_a?(String) && known_word.is_a?(String)
+  end
+
+  IGNORED_WORDS.each do |word|
+    raise RuntimeError, "Unexpected ignored word: #{word}" unless word.is_a?(String)
+  end
+
+  IMPLICIT_VERBS.each do |noun, implicit_verb|
+    raise RuntimeError, "Unexpected implicit verb pair: #{noun}, #{implicit_verb}" unless noun.is_a?(String) && implicit_verb.is_a?(String)
+  end
+
   # @param [String] command
   # @return ::Grammar
   def self.perform(command)

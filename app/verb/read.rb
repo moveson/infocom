@@ -7,7 +7,7 @@ module Verb
       if noun.nil?
         "You will need to say what you want me to read."
       elsif item.nil?
-        "I don't see a #{noun} here."
+        "I don't see #{noun.articleize} here."
       elsif item.location_key == state.player_location_key
         "You have to hold something before reading it."
       elsif item.location_key == "inventory"
@@ -17,7 +17,7 @@ module Verb
           "There's nothing to read on the #{item.name}."
         end
       else
-        "I don't see a #{noun} here."
+        "I don't see #{noun.articleize} here."
       end
     end
   end

@@ -22,7 +22,7 @@ module Verb
               "You can't put anything into the #{object}."
             end
           else
-            "I don't see a #{object} here."
+            "I don't see #{object.articleize} here."
           end
         else
           "I can't put the #{noun} there."

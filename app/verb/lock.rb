@@ -7,7 +7,7 @@ module Verb
       if noun.nil?
         "You will need to say what you want to lock."
       elsif item.nil?
-        "I don't see a #{noun} here."
+        "I don't see #{noun.articleize} here."
       elsif item.location_key == state.player_location_key || item.location_key == "inventory"
         if item.locked?
           "The #{noun} is already locked."
@@ -20,7 +20,7 @@ module Verb
           "You can't lock the #{noun}."
         end
       else
-        "I don't see a #{noun} here."
+        "I don't see #{noun.articleize} here."
       end
     end
   end

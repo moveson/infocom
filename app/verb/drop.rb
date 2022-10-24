@@ -6,11 +6,11 @@ module Verb
     def execute
       if noun.nil?
         "What did you want to drop?"
-      elsif item.location_key == "inventory"
+      elsif item&.location_key == "inventory"
         item.location_key = state.player_location_key
         "You drop the #{noun}."
       else
-        "You aren't carrying a #{noun}."
+        "You aren't carrying #{noun.articleize}."
       end
     end
   end

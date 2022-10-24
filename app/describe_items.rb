@@ -35,18 +35,18 @@ class DescribeItems
 
     if item.container?
       if contents.present?
-        text_segments << "  The #{item.name.downcase} contains:"
+        text_segments << "  The #{item.name} contains:"
         contents.each do |contained_item|
-          text_segments << "    a #{contained_item.name.downcase}"
+          text_segments << "    #{contained_item.name.articleize}"
         end
       else
-        text_segments << "  The #{item.name.downcase} is empty"
+        text_segments << "  The #{item.name} is empty"
       end
     elsif item.surface?
       if contents.present?
-        text_segments << "  On the #{item.name.downcase} is:"
+        text_segments << "  On the #{item.name} is:"
         contents.each do |contained_item|
-          text_segments << "    a #{contained_item.name.downcase}"
+          text_segments << "    #{contained_item.name.articleize}"
         end
       end
     end

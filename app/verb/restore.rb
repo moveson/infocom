@@ -19,7 +19,7 @@ module Verb
           "I can't restore a game without a filename."
         end
       else
-        "I don't know how to restore a #{noun}."
+        "I don't know how to restore #{noun.articleize}."
       end
     end
   end

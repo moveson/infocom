@@ -25,7 +25,7 @@ module Verb
               "It falls to the ground."
             end
           else
-            "I don't see a #{object} here."
+            "I don't see #{object.articleize} here."
           end
         else
           "I can't put the #{noun} there."

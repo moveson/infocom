@@ -10,7 +10,7 @@ module Verb
       if noun.nil?
         "You will need to say what you want me to get."
       elsif item.nil?
-        "I don't see a #{noun} here."
+        "I don't see #{noun.articleize} here."
       elsif ::Interactions.item_takeable?(item, state)
         remaining_capacity = PlayerConstants::CARRY_CAPACITY_SIZE - state.inventory.sum(&:size)
 
@@ -21,7 +21,7 @@ module Verb
           "You can't carry the #{noun}."
         end
       else
-        "I don't see a #{noun} here."
+        "I don't see #{noun.articleize} here."
       end
     end
   end

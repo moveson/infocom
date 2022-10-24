@@ -8,7 +8,7 @@ module Verb
         text_segments = ["You are carrying:"]
 
         state.inventory.each do |item|
-          text_segments << "  a #{item.name.downcase}"
+          text_segments << "  #{item.name.articleize}"
         end
 
         text_segments.join("\n")

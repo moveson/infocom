@@ -33,7 +33,7 @@ locations:
 
 items:
 - id: chest
-  name: Chest
+  name: chest
   description: a large oaken chest with a heavy lock
   location_key: tropical_forest
   size: 999
@@ -53,7 +53,7 @@ items:
   locked: false
   opened: false
 - id: key
-  name: Key
+  name: key
   description: a solid iron key
   location_key: twisted_trees
   size: 3

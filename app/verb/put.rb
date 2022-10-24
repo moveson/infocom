@@ -18,7 +18,7 @@ module Verb
           "I don't know how to put a thing #{[preposition, guaranteed_object].join(' ')}."
         end
       else
-        "You aren't carrying a #{noun}."
+        "You aren't carrying #{noun.articleize}."
       end
     end
   end

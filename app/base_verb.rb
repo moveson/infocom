@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "active_support/core_ext/string/inflections"
+require "./lib/core_ext/string"
 
 class BaseVerb
   # @param [Grammar] grammar

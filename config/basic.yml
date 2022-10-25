@@ -34,7 +34,7 @@ locations:
 items:
 - id: chest
   name: oak chest
-  description: a large oaken chest with a heavy lock
+  description: a large oak chest with a heavy lock
   location_key: tropical_forest
   size: 999
   capacity: 100
@@ -42,9 +42,9 @@ items:
   locked: true
   openable: true
   opened: false
-- id: dias
-  name: stone dias
-  description: a smooth stone dias about the size of a table
+- id: slab
+  name: stone slab
+  description: a smooth stone slab about the size of a table
   location_key: sunlit_hill
   size: 999
   capacity: 100

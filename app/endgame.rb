@@ -6,7 +6,7 @@ class Endgame
   def self.condition(state)
     if state.player_location_key == "deadly_pit"
       "lost"
-    elsif state.player_location_key == "sunlit_hill" && state.items_by_id["sword"].location_key == "items.dias"
+    elsif state.player_location_key == "sunlit_hill" && state.items_by_id["sword"].location_key == "items.slab"
       "won"
     elsif state.context.verb == "quit"
       "quit"

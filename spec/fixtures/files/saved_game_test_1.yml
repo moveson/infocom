@@ -22,6 +22,13 @@ items:
   text: Sunshine makes me happy :)
   location_key: items.chest
   size: 30
+- id: key
+  name: iron key
+  description: a solid iron key
+  location_key: twisted_trees
+  size: 3
+  can_unlock:
+  - chest
 - id: chest
   name: chest
   description: a large oaken chest with a heavy lock

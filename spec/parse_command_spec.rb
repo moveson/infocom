@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "./app/parse_command"
+require "./app/models/item"
 require "./app/models/state"
 
 RSpec.describe ::ParseCommand do
@@ -23,7 +24,19 @@ RSpec.describe ::ParseCommand do
 
     context "when command uses the full name of an item" do
       let(:command) { "get iron key" }
-      it { expect(result).to eq(::Grammar.new(verb: "get", noun: "key")) }
+      context "when the item is visible" do
+        before do
+          state.player_location_key = "twisted_trees"
+          state.items = [
+            ::Item.new(id: "key", name: "iron key", location_key: "twisted_trees")
+          ]
+        end
+        it { expect(result).to eq(::Grammar.new(verb: "get", noun: "key")) }
+      end
+
+      context "when the item is not visible" do
+        it { expect(result).to eq(::Grammar.new(verb: "get", noun: "iron", preposition: "key")) }
+      end
     end
 
     context "when command is one word with a one-word synonym" do

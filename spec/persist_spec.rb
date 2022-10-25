@@ -11,7 +11,7 @@ RSpec.describe ::Persist do
     let(:state) { ::State.new }
     let(:filename) { "saved_game_test_1" }
     let(:expected_locations) { [meadow_location, hill_location] }
-    let(:expected_items) { [chest_item, sword_item] }
+    let(:expected_items) { [sword_item, key_item, chest_item] }
 
     let(:meadow_location) do
       ::Location.new(
@@ -45,6 +45,17 @@ RSpec.describe ::Persist do
         locked: true,
         openable: true,
         opened: false,
+      )
+    end
+
+    let(:key_item) do
+      ::Item.new(
+        id: "key",
+        name: "iron key",
+        description: "a solid iron key",
+        location_key: "twisted_trees",
+        size: 3,
+        can_unlock: ["chest"]
       )
     end
 
@@ -113,6 +124,19 @@ RSpec.describe ::Persist do
           openable: false
           opened: false
           can_unlock: []
+        - id: key
+          name: iron key
+          description: a solid iron key
+          text:
+          location_key: twisted_trees
+          size: 3
+          capacity: 0
+          lockable: false
+          locked: false
+          openable: false
+          opened: false
+          can_unlock:
+          - chest
         - id: chest
           name: chest
           description: a large oaken chest with a heavy lock

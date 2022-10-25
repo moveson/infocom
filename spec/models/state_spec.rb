@@ -26,6 +26,17 @@ RSpec.describe ::State do
       )
     end
 
+    let(:key_item) do
+      ::Item.new(
+        id: "key",
+        name: "iron key",
+        description: "a solid iron key",
+        location_key: "twisted_trees",
+        size: 3,
+        can_unlock: ["chest"]
+      )
+    end
+
     let(:sword_item) do
       ::Item.new(
         id: "sword",
@@ -38,7 +49,7 @@ RSpec.describe ::State do
     end
 
     let(:expected_result) do
-      { "sword" => sword_item, "chest" => chest_item }
+      { "sword" => sword_item, "key" => key_item, "chest" => chest_item }
     end
 
     it "returns a hash of items indexed by id" do

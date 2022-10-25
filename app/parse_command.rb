@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "./app/interactions"
 require "./app/rules"
 require "./app/models/grammar"
 

@@ -6,13 +6,14 @@ require "./app/models/grammar"
 class ParseCommand
   # @param [String] command
   # @return ::Grammar
-  def self.perform(command)
-    new(command).perform
+  def self.perform(command, state)
+    new(command, state).perform
   end
 
   # @param [String] command
-  def initialize(command)
+  def initialize(command, state)
     @words = command.to_s.downcase.split
+    @state = state
   end
 
   # @return ::Grammar
@@ -26,7 +27,7 @@ class ParseCommand
 
   private
 
-  attr_reader :words
+  attr_reader :words, :state
 
    def remove_ignored_words
     words.reject! { |word| ::Rules::IGNORED_WORDS.include?(word) }

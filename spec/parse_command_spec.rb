@@ -4,8 +4,9 @@ require "./app/parse_command"
 require "./app/models/state"
 
 RSpec.describe ::ParseCommand do
-  subject { described_class.new(command) }
+  subject { described_class.new(command, state) }
   let(:command) { nil }
+  let(:state) { ::State.new }
 
   describe "#perform" do
     let(:result) { subject.perform }

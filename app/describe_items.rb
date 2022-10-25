@@ -17,8 +17,10 @@ class DescribeItems
   def perform
     state.items_at_player_location.each do |item|
       text_segments << "You see #{item.description}"
-      if (item.openable? && item.opened?) || item.surface?
+      if item.children_visible?
         add_text_from_contents(item)
+      elsif item.lockable? && item.unlocked? && item.closed?
+        text_segments << "  The #{item.name} is closed"
       end
     end
 

@@ -36,7 +36,7 @@ RSpec.describe ::Persist do
     let(:chest_item) do
       ::Item.new(
         id: "chest",
-        name: "Chest",
+        name: "chest",
         description: "a large oaken chest with a heavy lock",
         location_key: "tropical_forest",
         size: 999,
@@ -51,7 +51,7 @@ RSpec.describe ::Persist do
     let(:sword_item) do
       ::Item.new(
         id: "sword",
-        name: "Sword",
+        name: "engraved sword",
         description: "a jewel-encrusted sword",
         text: "Sunshine makes me happy :)",
         location_key: "items.chest",
@@ -102,7 +102,7 @@ RSpec.describe ::Persist do
         player_location_key: quiet_meadow
         items:
         - id: sword
-          name: Sword
+          name: engraved sword
           description: a jewel-encrusted sword
           text: Sunshine makes me happy :)
           location_key: items.chest
@@ -114,7 +114,7 @@ RSpec.describe ::Persist do
           opened: false
           can_unlock: []
         - id: chest
-          name: Chest
+          name: chest
           description: a large oaken chest with a heavy lock
           text:
           location_key: tropical_forest

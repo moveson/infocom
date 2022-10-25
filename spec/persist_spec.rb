@@ -115,6 +115,7 @@ RSpec.describe ::Persist do
         - id: sword
           name: engraved sword
           description: a jewel-encrusted sword
+          described: false
           text: Sunshine makes me happy :)
           location_key: items.chest
           size: 30
@@ -127,6 +128,7 @@ RSpec.describe ::Persist do
         - id: key
           name: iron key
           description: a solid iron key
+          described: false
           text:
           location_key: twisted_trees
           size: 3
@@ -140,6 +142,7 @@ RSpec.describe ::Persist do
         - id: chest
           name: chest
           description: a large oaken chest with a heavy lock
+          described: false
           text:
           location_key: tropical_forest
           size: 999

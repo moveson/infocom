@@ -4,6 +4,7 @@ Item = Struct.new(
   :id,
   :name,
   :description,
+  :described,
   :text,
   :location_key,
   :size,
@@ -19,6 +20,7 @@ Item = Struct.new(
   # Default values go here
   def initialize(*)
     super
+    self.described ||= false
     self.capacity ||= 0
     self.lockable ||= false
     self.locked ||= false
@@ -27,6 +29,7 @@ Item = Struct.new(
     self.can_unlock ||= []
   end
 
+  alias described? described
   alias lockable? lockable
   alias locked? locked
   alias openable? openable

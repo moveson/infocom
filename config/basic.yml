@@ -33,7 +33,7 @@ locations:
 
 items:
 - id: chest
-  name: chest
+  name: oak chest
   description: a large oaken chest with a heavy lock
   location_key: tropical_forest
   size: 999
@@ -53,13 +53,13 @@ items:
   locked: false
   opened: false
 - id: key
-  name: key
+  name: iron key
   description: a solid iron key
   location_key: twisted_trees
   size: 3
   can_unlock: chest
 - id: sword
-  name: sword
+  name: engraved sword
   description: a long sword with a golden hilt and strange engravings on the blade.
   text: Sunshine makes me happy :)
   location_key: items.chest

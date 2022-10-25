@@ -44,6 +44,10 @@ Item = Struct.new(
     location_key.start_with?("item")
   end
 
+  def children_possible?
+    container? || surface?
+  end
+
   def children_visible?
     opened? || surface?
   end

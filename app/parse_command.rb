@@ -19,6 +19,7 @@ class ParseCommand
   # @return ::Grammar
   def perform
     remove_ignored_words
+    map_visible_item_names
     map_synonyms
     add_implicit_verb
 
@@ -29,15 +30,28 @@ class ParseCommand
 
   attr_reader :words, :state
 
-   def remove_ignored_words
+  def remove_ignored_words
     words.reject! { |word| ::Rules::IGNORED_WORDS.include?(word) }
+  end
+
+  def map_visible_item_names
+    visible_items = ::Interactions.visible_items(state)
+
+    words.each_cons(2).with_index do |word_pair, index|
+      matching_item = visible_items.find { |item| item.name == word_pair.join(" ") }
+
+      if matching_item
+        words[index] = matching_item.id
+        words.delete_at(index + 1)
+      end
+    end
   end
 
   def map_synonyms
     words.map! { |word| ::Rules::SYNONYMS[word] || word }
   end
 
-   def add_implicit_verb
+  def add_implicit_verb
     implicit_verb = ::Rules::IMPLICIT_VERBS[words.first]
     words.unshift(implicit_verb) if implicit_verb
   end

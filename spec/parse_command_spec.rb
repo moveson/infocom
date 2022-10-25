@@ -21,6 +21,11 @@ RSpec.describe ::ParseCommand do
       it { expect(result).to eq(::Grammar.new(verb: "get", noun: "sword")) }
     end
 
+    context "when command uses the full name of an item" do
+      let(:command) { "get iron key" }
+      it { expect(result).to eq(::Grammar.new(verb: "get", noun: "key")) }
+    end
+
     context "when command is one word with a one-word synonym" do
       let(:command) { "inv" }
       it { expect(result).to eq(::Grammar.new(verb: "inventory")) }

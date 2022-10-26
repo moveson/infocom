@@ -3,7 +3,7 @@
 require "./app/models/state"
 
 class BuildInitialState
-  START_GAME_FILE_PATH = "./config/basic.yml"
+  START_GAME_FILE_PATH = "./config/initial_state.yml"
 
   def self.perform
     state = ::State.new

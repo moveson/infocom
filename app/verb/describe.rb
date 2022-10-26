@@ -8,7 +8,7 @@ module Verb
         "You will need to say what you want me to describe."
       elsif item.nil?
         "I don't see #{noun.articleize} here."
-      elsif item.location_key == state.player_location_key || item.location_key == "inventory"
+      elsif item.location_key == state.player_location_id || item.location_key == "inventory"
         item.described = true
         "It is #{item.description}"
       else

@@ -5,7 +5,7 @@ require "active_support/core_ext/enumerable"
 require "./app/models/context"
 
 State = Struct.new(
-  :player_location_key,
+  :player_location_id,
   :items,
   :locations,
   :context,
@@ -35,11 +35,11 @@ State = Struct.new(
   end
 
   def items_at_player_location
-    items.select { |item| item.location_key == player_location_key }
+    items.select { |item| item.location_key == player_location_id }
   end
 
   def player_location
-    locations_by_id[player_location_key]
+    locations_by_id[player_location_id]
   end
 
   def inventory
@@ -48,7 +48,7 @@ State = Struct.new(
 
   def to_yaml
     hash = {
-      player_location_key: player_location_key,
+      player_location_id: player_location_id,
       items: items.map(&:to_h),
       locations: locations.map(&:to_h),
       context: context.to_h,

@@ -8,7 +8,7 @@ module Verb
         "You will need to say what you want me to read."
       elsif item.nil?
         "I don't see #{noun.articleize} here."
-      elsif item.location_key == state.player_location_key
+      elsif item.location_key == state.player_location_id
         "You have to hold something before reading it."
       elsif item.location_key == "inventory"
         if item.text.present?

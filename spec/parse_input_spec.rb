@@ -26,7 +26,7 @@ RSpec.describe ::ParseInput do
       let(:command) { "get iron key" }
       context "when the item is visible" do
         before do
-          state.player_location_key = "twisted_trees"
+          state.player_location_id = "twisted_trees"
           state.items = [
             ::Item.new(id: "key", name: "iron key", location_key: "twisted_trees")
           ]

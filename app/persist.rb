@@ -47,7 +47,7 @@ class Persist
     return false unless File.exist?(file_path)
 
     hash = ::YAML.load(File.read(file_path))
-    state.player_location_key = hash["player_location_key"]
+    state.player_location_id = hash["player_location_id"]
     state.items = hash["items"].map { |item_attributes| ::Item.new(item_attributes) }
     state.locations = hash["locations"].map { |location_attributes| ::Location.new(location_attributes) }
     state.context = ::Context.new(hash["context"] || {})

@@ -4,9 +4,9 @@ class Endgame
   # @param [State] state
   # @return [String (frozen)]
   def self.condition(state)
-    if state.player_location_key == "deadly_pit"
+    if state.player_location_id == "deadly_pit"
       "lost"
-    elsif state.player_location_key == "sunlit_hill" && state.items_by_id["sword"].location_key == "items.slab"
+    elsif state.player_location_id == "sunlit_hill" && state.items_by_id["sword"].location_key == "items.slab"
       "won"
     elsif state.context.verb == "quit"
       "quit"

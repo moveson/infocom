@@ -77,7 +77,7 @@ RSpec.describe ::Persist do
 
       it "modifies state attributes as expected" do
         result
-        expect(state.player_location_key).to eq("quiet_meadow")
+        expect(state.player_location_id).to eq("quiet_meadow")
         expect(state.locations).to match_array(expected_locations)
         expect(state.items).to match_array(expected_items)
       end
@@ -92,7 +92,7 @@ RSpec.describe ::Persist do
 
       it "does not modify the state" do
         result
-        expect(state.player_location_key).to be_nil
+        expect(state.player_location_id).to be_nil
         expect(state.locations).to be_empty
         expect(state.items).to be_empty
         expect(state.context).to eq(::Context.new)
@@ -110,7 +110,7 @@ RSpec.describe ::Persist do
     let(:expected_contents) do
       <<~CONTENTS
         ---
-        player_location_key: quiet_meadow
+        player_location_id: quiet_meadow
         items:
         - id: sword
           name: engraved sword

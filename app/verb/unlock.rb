@@ -8,7 +8,7 @@ module Verb
         "You will need to say what you want to unlock."
       elsif item.nil?
         "I don't see #{noun.articleize} here."
-      elsif item.location_key == state.player_location_key || item.location_key == "inventory"
+      elsif item.location_key == state.player_location_id || item.location_key == "inventory"
         if item.unlocked?
           "The #{noun} is already unlocked."
         elsif state.inventory.any? { |item| item.can_unlock == noun }

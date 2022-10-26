@@ -11,7 +11,7 @@ module Verb
       elsif new_location_key.nil?
         "I can't go #{noun} from here."
       else
-        state.player_location_key = new_location_key
+        state.player_location_id = new_location_key
         ""
       end
     end

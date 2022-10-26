@@ -19,7 +19,10 @@ RSpec.describe ::Persist do
         "name" => "Quiet Meadow",
         "description" => "You find yourself in a quiet meadow.",
         "described" => false,
-        "neighbors" => { "east" => "sunlit_hill", "west" => "twisted_trees" },
+        "neighbors" => {
+          "east" => { "location_id" => "sunlit_hill" },
+          "west" => { "location_id" => "twisted_trees" },
+        },
       )
     end
 
@@ -29,7 +32,9 @@ RSpec.describe ::Persist do
         "name" => "Sunlit Hill",
         "description" => "A sunlit hill.",
         "described" => true,
-        "neighbors" => { "west" => "quiet_meadow" },
+        "neighbors" => {
+          "west" => { "location_id" => "quiet_meadow" },
+        },
       )
     end
 
@@ -158,14 +163,17 @@ RSpec.describe ::Persist do
           name: Quiet Meadow
           description: You find yourself in a quiet meadow.
           neighbors:
-            east: sunlit_hill
-            west: twisted_trees
+            east:
+              location_id: sunlit_hill
+            west:
+              location_id: twisted_trees
           described: false
         - id: sunlit_hill
           name: Sunlit Hill
           description: A sunlit hill.
           neighbors:
-            west: quiet_meadow
+            west:
+              location_id: quiet_meadow
           described: true
         context:
           verb:

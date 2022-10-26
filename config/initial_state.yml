@@ -5,7 +5,7 @@ player:
 
 locations:
 - id: quiet_meadow
-  name: Quiet Meadow
+  name: quiet meadow
   description: You find yourself in a quiet meadow surrounded by trees. A path runs through going east and west. There is also a faint track leading south.
   neighbors:
     east:
@@ -15,13 +15,13 @@ locations:
     south:
       location_id: tropical_forest
 - id: sunlit_hill
-  name: Sunlit Hill
+  name: sunlit hill
   description: You climb to the top of a sunny hill. A path leads to the west.
   neighbors:
     west:
       location_id: quiet_meadow
 - id: twisted_trees
-  name: Twisted Trees
+  name: twisted trees
   description: You find yourself in a strange grove of twisted trees. A steep slope leads down to the north.
   neighbors:
     east:
@@ -32,11 +32,11 @@ locations:
       effects:
         player_health: -10
 - id: deadly_pit
-  name: Deadly Pit
+  name: deadly pit
   description: You are in a deep pit.
   neighbors:
 - id: tropical_forest
-  name: Tropical Forest
+  name: tropical forest
   description: You are in a stand of tropical trees, vines, and corpse flowers. A path leads north.
   neighbors:
     west:

@@ -16,7 +16,7 @@ RSpec.describe ::Persist do
     let(:meadow_location) do
       ::Location.new(
         "id" => "quiet_meadow",
-        "name" => "Quiet Meadow",
+        "name" => "quiet meadow",
         "description" => "You find yourself in a quiet meadow.",
         "described" => false,
         "neighbors" => {
@@ -29,7 +29,7 @@ RSpec.describe ::Persist do
     let(:hill_location) do
       ::Location.new(
         "id" => "sunlit_hill",
-        "name" => "Sunlit Hill",
+        "name" => "sunlit hill",
         "description" => "A sunlit hill.",
         "described" => true,
         "neighbors" => {
@@ -161,7 +161,7 @@ RSpec.describe ::Persist do
           can_unlock: []
         locations:
         - id: quiet_meadow
-          name: Quiet Meadow
+          name: quiet meadow
           description: You find yourself in a quiet meadow.
           neighbors:
             east:
@@ -170,7 +170,7 @@ RSpec.describe ::Persist do
               location_id: twisted_trees
           described: false
         - id: sunlit_hill
-          name: Sunlit Hill
+          name: sunlit hill
           description: A sunlit hill.
           neighbors:
             west:

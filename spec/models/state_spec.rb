@@ -62,7 +62,7 @@ RSpec.describe ::State do
 
     it "returns the expected Location object" do
       expect(result).to be_a(::Location)
-      expect(result.name).to eq("Quiet Meadow")
+      expect(result.name).to eq("quiet meadow")
     end
   end
 end

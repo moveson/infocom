@@ -1,5 +1,5 @@
 ---
-# ParseCommand replaces these keys with the respective values
+# Words matching these keys will be replaced with the respective values
 synonyms:
   # Directions
   e: east
@@ -30,13 +30,14 @@ synonyms:
   into: in
   onto: "on"
 
-# ParseCommand ignores these words entirely
+# These words will be ignored entirely
 ignored_words:
 - a
 - the
 
-# Any of the following keys found in the first word position
-# will result in the associated value being added as the verb
+# If a word matching any of the following keys is found in the
+# first word (verb) position, the associated value will be added in the
+# first word position.
 implicit_verbs:
   east: go
   north: go

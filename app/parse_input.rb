@@ -4,16 +4,16 @@ require "./app/interactions"
 require "./app/rules"
 require "./app/models/grammar"
 
-class ParseCommand
-  # @param [String] command
+class ParseInput
+  # @param [String] input_text
   # @return ::Grammar
-  def self.perform(command, state)
-    new(command, state).perform
+  def self.perform(input_text, state)
+    new(input_text, state).perform
   end
 
-  # @param [String] command
-  def initialize(command, state)
-    @words = command.to_s.downcase.split
+  # @param [String] input_text
+  def initialize(input_text, state)
+    @words = input_text.to_s.downcase.split
     @state = state
   end
 

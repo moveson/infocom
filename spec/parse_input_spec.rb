@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "./app/parse_command"
+require "./app/parse_input"
 require "./app/models/item"
 require "./app/models/state"
 
-RSpec.describe ::ParseCommand do
+RSpec.describe ::ParseInput do
   subject { described_class.new(command, state) }
   let(:command) { nil }
   let(:state) { ::State.new }

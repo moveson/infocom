@@ -29,8 +29,8 @@ class Main
       break if endgame_condition == "lost" || endgame_condition == "won"
 
       print ::Text.colorize(">", 1)
-      command = gets.chomp
-      response = parse_and_execute(command)
+      input_text = gets.chomp
+      response = parse_and_execute(input_text)
       puts ::Text.colorize(response, 0, 33) if response.present?
       @state.turn_count += 1
     end
@@ -39,26 +39,26 @@ class Main
     puts "Number of turns: #{@state.turn_count}\n\n"
   end
 
-  # @param [String] command
+  # @param [String] input_text
   # @return [String (frozen)]
-  def self.parse_and_execute(command)
-    grammar = ::ParseInput.perform(command, @state)
-    response = execute(grammar)
-    @state.context.verb = grammar.verb
-    @state.context.noun = grammar.noun
+  def self.parse_and_execute(input_text)
+    command = ::ParseInput.perform(input_text, @state)
+    response = execute(command)
+    @state.context.verb = command.verb
+    @state.context.noun = command.noun
     response
   end
 
-  # @param [::Grammar] grammar
+  # @param [::Command] command
   # @return [String (frozen)]
-  def self.execute(grammar)
-    verb = grammar.verb
+  def self.execute(command)
+    verb = command.verb
     return "" if verb.blank?
 
     verb_class = "::Verb::#{verb.classify}".safe_constantize
 
     if verb_class.present?
-      verb_class.execute(grammar, @state)
+      verb_class.execute(command, @state)
     else
       "I don't know how to #{verb}."
     end

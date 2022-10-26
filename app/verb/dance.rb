@@ -32,7 +32,7 @@ module Verb
 
     def execute
       if DIRECTIONS.include?(noun)
-        go_response = Go.execute(grammar, state)
+        go_response = Go.execute(command, state)
 
         go_response.presence || ELSEWHERE_RESPONSES.sample
       else

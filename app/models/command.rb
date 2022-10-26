@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Grammar = Struct.new(
+Command = Struct.new(
   :noun,
   :verb,
   :preposition,

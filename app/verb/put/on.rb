@@ -12,7 +12,7 @@ module Verb
         if object.nil?
           "What do you want to put the #{noun} on?"
         elsif object == "ground" || object == "floor"
-          Drop.execute(grammar, state)
+          Drop.execute(command, state)
         elsif proposed_parent.present?
           if proposed_parent == item
             "You can't put something onto itself."
@@ -21,7 +21,7 @@ module Verb
               item.location_key = "items.#{proposed_parent.id}"
               "You put the #{noun} on the #{object}."
             else
-              Drop.execute(grammar, state)
+              Drop.execute(command, state)
               "It falls to the ground."
             end
           else

@@ -4,20 +4,20 @@ require "active_support/core_ext/string/inflections"
 require "./lib/core_ext/string"
 
 class BaseVerb
-  # @param [Grammar] grammar
+  # @param [Command] command
   # @param [State] state
   # @return [String]
-  def self.execute(grammar, state)
-    new(grammar, state).execute
+  def self.execute(command, state)
+    new(command, state).execute
   end
 
-  # @param [String] grammar
+  # @param [String] command
   # @param [State] state
-  def initialize(grammar, state)
-    @grammar = grammar
-    @noun = grammar.noun
-    @preposition = grammar.preposition
-    @object = grammar.object
+  def initialize(command, state)
+    @command = command
+    @noun = command.noun
+    @preposition = command.preposition
+    @object = command.object
     @state = state
   end
 
@@ -27,7 +27,7 @@ class BaseVerb
 
   private
 
-  attr_reader :grammar, :noun, :preposition, :object, :state
+  attr_reader :command, :noun, :preposition, :object, :state
 
   def item
     state.items_by_id[noun]

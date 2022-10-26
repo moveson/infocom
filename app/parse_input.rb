@@ -2,11 +2,11 @@
 
 require "./app/interactions"
 require "./app/rules"
-require "./app/models/grammar"
+require "./app/models/command"
 
 class ParseInput
   # @param [String] input_text
-  # @return ::Grammar
+  # @return ::Command
   def self.perform(input_text, state)
     new(input_text, state).perform
   end
@@ -17,14 +17,14 @@ class ParseInput
     @state = state
   end
 
-  # @return ::Grammar
+  # @return ::Command
   def perform
     remove_ignored_words
     map_visible_item_names
     map_synonyms
     add_implicit_verb
 
-    ::Grammar.new(verb: words[0], noun: words[1], preposition: words[2], object: words[3])
+    ::Command.new(verb: words[0], noun: words[1], preposition: words[2], object: words[3])
   end
 
   private

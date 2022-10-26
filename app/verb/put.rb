@@ -10,7 +10,7 @@ module Verb
         "What did you want to put?"
       elsif item&.location_key == "inventory"
         if preposition_class.present?
-          preposition_class.execute(grammar, state)
+          preposition_class.execute(command, state)
         elsif preposition.nil?
           "You are going to have to say where you want to put the #{noun}."
         else

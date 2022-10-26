@@ -6,11 +6,11 @@ module Verb
     def execute
       if noun.nil?
         "You will need to say what you want me to describe."
-      elsif item.nil?
+      elsif subject_item.nil?
         "I don't see #{noun.articleize} here."
-      elsif item.location_key == state.player_location_id || item.location_key == "inventory"
-        item.described = true
-        "It is #{item.description}"
+      elsif subject_item.location_key == state.player_location_id || subject_item.location_key == "inventory"
+        subject_item.described = true
+        "It is #{subject_item.description}"
       else
         "I don't see #{noun.articleize} here."
       end

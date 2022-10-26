@@ -10,11 +10,11 @@ module Verb
         if object.nil?
           "What do you want to put the #{noun} into?"
         elsif proposed_parent.present?
-          if proposed_parent == item
+          if proposed_parent == subject_item
             "You can't put something into itself."
           elsif state.items_at_player_location.include?(proposed_parent) || state.inventory.include?(proposed_parent)
             if proposed_parent.container? && proposed_parent.opened?
-              item.location_key = "items.#{proposed_parent.id}"
+              subject_item.location_key = "items.#{proposed_parent.id}"
               "You put the #{noun} into the #{object}."
             elsif proposed_parent.container? && proposed_parent.closed?
               "The #{object} is closed."

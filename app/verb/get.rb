@@ -9,13 +9,13 @@ module Verb
     def execute
       if noun.nil?
         "You will need to say what you want me to get."
-      elsif item.nil?
+      elsif subject_item.nil?
         "I don't see #{noun.articleize} here."
-      elsif ::Interactions.item_takeable?(item, state)
+      elsif ::Interactions.item_takeable?(subject_item, state)
         remaining_capacity = PlayerConstants::CARRY_CAPACITY_SIZE - state.inventory.sum(&:size)
 
-        if remaining_capacity >= item.size
-          item.location_key = "inventory"
+        if remaining_capacity >= subject_item.size
+          subject_item.location_key = "inventory"
           "You take the #{noun}."
         else
           "You can't carry the #{noun}."

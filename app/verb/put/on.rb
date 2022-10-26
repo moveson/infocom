@@ -14,11 +14,11 @@ module Verb
         elsif object == "ground" || object == "floor"
           Drop.execute(command, state)
         elsif proposed_parent.present?
-          if proposed_parent == item
+          if proposed_parent == subject_item
             "You can't put something onto itself."
           elsif state.items_at_player_location.include?(proposed_parent) || state.inventory.include?(proposed_parent)
             if proposed_parent.surface?
-              item.location_key = "items.#{proposed_parent.id}"
+              subject_item.location_key = "items.#{proposed_parent.id}"
               "You put the #{noun} on the #{object}."
             else
               Drop.execute(command, state)

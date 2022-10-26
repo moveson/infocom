@@ -8,7 +8,7 @@ module Verb
     def execute
       if noun.nil?
         "What did you want to put?"
-      elsif item&.location_key == "inventory"
+      elsif subject_item&.location_key == "inventory"
         if preposition_class.present?
           preposition_class.execute(command, state)
         elsif preposition.nil?

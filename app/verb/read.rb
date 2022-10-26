@@ -6,15 +6,15 @@ module Verb
     def execute
       if noun.nil?
         "You will need to say what you want me to read."
-      elsif item.nil?
+      elsif subject_item.nil?
         "I don't see #{noun.articleize} here."
-      elsif item.location_key == state.player_location_id
+      elsif subject_item.location_key == state.player_location_id
         "You have to hold something before reading it."
-      elsif item.location_key == "inventory"
-        if item.text.present?
-          "It says, '#{item.text}'"
+      elsif subject_item.location_key == "inventory"
+        if subject_item.text.present?
+          "It says, '#{subject_item.text}'"
         else
-          "There's nothing to read on the #{item.name}."
+          "There's nothing to read on the #{subject_item.name}."
         end
       else
         "I don't see #{noun.articleize} here."

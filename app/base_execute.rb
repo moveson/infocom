@@ -29,7 +29,7 @@ class BaseExecute
 
   attr_reader :command, :noun, :preposition, :object, :state
 
-  def item
+  def subject_item
     state.items_by_id[noun]
   end
 

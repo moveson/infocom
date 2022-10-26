@@ -6,15 +6,15 @@ module Verb
     def execute
       if noun.nil?
         "You will need to say what you want to open."
-      elsif item.nil?
+      elsif subject_item.nil?
         "I don't see #{noun.articleize} here."
-      elsif item.location_key == state.player_location_id || item.location_key == "inventory"
-        if item.opened?
+      elsif subject_item.location_key == state.player_location_id || subject_item.location_key == "inventory"
+        if subject_item.opened?
           "The #{noun} is already open."
-        elsif item.container? && item.unlocked?
-          item.opened = true
+        elsif subject_item.container? && subject_item.unlocked?
+          subject_item.opened = true
           "You open the #{noun}."
-        elsif item.container? && item.lockable?
+        elsif subject_item.container? && subject_item.lockable?
           "The #{noun} is locked."
         else
           "You are unable to open the #{noun}."

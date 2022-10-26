@@ -1,5 +1,6 @@
 ---
-player_location_id: quiet_meadow
+player:
+  location_id: quiet_meadow
 
 locations:
 - id: quiet_meadow

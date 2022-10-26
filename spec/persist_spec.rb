@@ -110,7 +110,8 @@ RSpec.describe ::Persist do
     let(:expected_contents) do
       <<~CONTENTS
         ---
-        player_location_id: quiet_meadow
+        player:
+          location_id: quiet_meadow
         items:
         - id: sword
           name: engraved sword

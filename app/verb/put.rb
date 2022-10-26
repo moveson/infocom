@@ -3,7 +3,7 @@
 Dir["./app/verb/put/*.rb"].each { |file| require file }
 
 module Verb
-  class Put < ::BaseVerb
+  class Put < ::BaseExecute
     # @return [String (frozen)]
     def execute
       if noun.nil?

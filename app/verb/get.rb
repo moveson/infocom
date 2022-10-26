@@ -4,7 +4,7 @@ require "./app/player_constants"
 require "./app/interactions"
 
 module Verb
-  class Get < ::BaseVerb
+  class Get < ::BaseExecute
     # @return [String (frozen)]
     def execute
       if noun.nil?

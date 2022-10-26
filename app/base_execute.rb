@@ -3,7 +3,7 @@
 require "active_support/core_ext/string/inflections"
 require "./lib/core_ext/string"
 
-class BaseVerb
+class BaseExecute
   # @param [Command] command
   # @param [State] state
   # @return [String]

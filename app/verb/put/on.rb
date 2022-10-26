@@ -3,8 +3,8 @@
 require "./app/verb/drop"
 
 module Verb
-  class Put < ::BaseVerb
-    class On < ::BaseVerb
+  class Put < ::BaseExecute
+    class On < ::BaseExecute
       # @return [String (frozen)]
       def execute
         proposed_parent = state.items_by_id[object]

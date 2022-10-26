@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Verb
-  class Go < ::BaseVerb
+  class Go < ::BaseExecute
     # @return [String (frozen)]
     def execute
       new_location_key = state.player_location.neighbors[noun]

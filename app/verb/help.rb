@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Verb
-  class Help < ::BaseVerb
+  class Help < ::BaseExecute
     # @return [String (frozen)]
     def execute
       <<~TEXT

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Verb
-  class Read < ::BaseVerb
+  class Read < ::BaseExecute
     # @return [String (frozen)]
     def execute
       if noun.nil?

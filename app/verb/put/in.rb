@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Verb
-  class Put < ::BaseVerb
-    class In < ::BaseVerb
+  class Put < ::BaseExecute
+    class In < ::BaseExecute
       # @return [String (frozen)]
       def execute
         proposed_parent = state.items_by_id[object]

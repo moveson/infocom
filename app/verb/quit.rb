@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Verb
-  class Quit < ::BaseVerb
+  class Quit < ::BaseExecute
     # @return [String (frozen)]
     def execute
       ""

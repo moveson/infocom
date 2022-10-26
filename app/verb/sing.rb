@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Verb
-  class Sing < ::BaseVerb
+  class Sing < ::BaseExecute
     # @return [String (frozen)]
     RESPONSES = [
       "The nearby animals are impressed.",

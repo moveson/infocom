@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Verb
-  class Inventory < ::BaseVerb
+  class Inventory < ::BaseExecute
     # @return [String (frozen)]
     def execute
       if state.inventory.present?

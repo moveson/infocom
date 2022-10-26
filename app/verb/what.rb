@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Verb
-  class What < ::BaseVerb
+  class What < ::BaseExecute
     # @return [String (frozen)]
     RESPONSES = [
       "I'm just kind of a fake dungeon master; I don't answer questions.",

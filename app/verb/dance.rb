@@ -5,7 +5,7 @@ require "active_support"
 require_relative "go"
 
 module Verb
-  class Dance < ::BaseVerb
+  class Dance < ::BaseExecute
     DIRECTIONS = %w[east north south west]
 
     # @return [String (frozen)]

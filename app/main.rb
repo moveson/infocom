@@ -9,7 +9,7 @@ require "./app/endgame"
 require "./app/parse_input"
 require "./app/text"
 
-require "./app/base_verb"
+require "./app/base_execute"
 Dir["./app/verb/*.rb"].each { |file| require file }
 
 class Main

@@ -3,7 +3,7 @@
 require "./app/persist"
 
 module Verb
-  class Restore < ::BaseVerb
+  class Restore < ::BaseExecute
     # @return [String (frozen)]
     def execute
       if noun.nil? || noun == "game"

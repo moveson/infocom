@@ -1,6 +1,7 @@
 ---
 player:
   location_id: quiet_meadow
+  health: 10
 
 locations:
 - id: quiet_meadow
@@ -27,9 +28,12 @@ locations:
       location_id: quiet_meadow
     north:
       location_id: deadly_pit
+      description: You lose your footing on the slippery slope and fall downwards...
+      effects:
+        player_health: -10
 - id: deadly_pit
   name: Deadly Pit
-  description: You have fallen into a deep pit.
+  description: You are in a deep pit.
   neighbors:
 - id: tropical_forest
   name: Tropical Forest

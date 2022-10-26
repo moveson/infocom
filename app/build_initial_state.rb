@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "./app/persist"
 require "./app/models/state"
 
 class BuildInitialState

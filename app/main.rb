@@ -26,7 +26,7 @@ class Main
       puts ::DescribeLocation.perform(@state)
       puts ::DescribeItems.perform(@state)
 
-      break if endgame_condition == "lost" || endgame_condition == "won"
+      break if endgame_condition == "died" || endgame_condition == "won"
 
       print ::Text.colorize(">", 1)
       input_text = gets.chomp

@@ -10,9 +10,11 @@ RSpec.describe ::Endgame do
     let(:state) { ::State.new }
     let(:player_location_id) { "quiet_meadow" }
     let(:sword_location_key) { "quiet_meadow" }
+    let(:player_health) { 10 }
 
     before do
       state.player_location_id = player_location_id
+      state.player.health = player_health
       state.items = [::Item.new(id: "sword", location_key: sword_location_key)]
     end
 
@@ -41,10 +43,10 @@ RSpec.describe ::Endgame do
       it { expect(result).to eq("in_progress") }
     end
 
-    context "when lost criteria are met" do
-      let(:player_location_id) { "deadly_pit" }
+    context "when health falls to 0" do
+      let(:player_health) { 0 }
 
-      it { expect(result).to eq("lost") }
+      it { expect(result).to eq("died") }
     end
   end
 end

@@ -117,6 +117,7 @@ RSpec.describe ::Persist do
         ---
         player:
           location_id: quiet_meadow
+          health: 10
         items:
         - id: sword
           name: engraved sword

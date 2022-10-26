@@ -5,7 +5,7 @@ module Verb
     class In < ::BaseExecute
       # @return [String (frozen)]
       def execute
-        proposed_parent = state.items_by_id[object]
+        proposed_parent = object_item
 
         if object.nil?
           "What do you want to put the #{noun} into?"

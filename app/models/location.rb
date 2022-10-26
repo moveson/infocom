@@ -15,4 +15,8 @@ Location = Struct.new(
     self.neighbors ||= {}
     self.described ||= false
   end
+
+  def general_description
+    description["general"]
+  end
 end

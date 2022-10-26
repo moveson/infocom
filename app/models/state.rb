@@ -17,6 +17,7 @@ State = Struct.new(
   # Default values go here
   def initialize(*)
     super
+    self.player ||= ::Player.new
     self.items ||= []
     self.locations ||= []
     self.context ||= ::Context.new

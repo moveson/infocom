@@ -1,12 +1,31 @@
 # frozen_string_literal: true
 
 require "yaml"
+require "./config/constants"
 
 class Rules
-  RULES_FILE_PATH = "./config/rules.yml"
-  RULES_HASH = YAML.load(File.read(RULES_FILE_PATH))
+  # @param [String] adventure
+  def initialize(adventure)
+    @file_path = "#{::Constants::ADVENTURES_DIRECTORY}/#{adventure}/rules.yml"
+  end
 
-  SYNONYMS = RULES_HASH["synonyms"]
-  IGNORED_WORDS = RULES_HASH["ignored_words"]
-  IMPLICIT_VERBS = RULES_HASH["implicit_verbs"]
+  def synonyms
+    @synonyms ||= rules_hash["synonyms"]
+  end
+
+  def ignored_words
+    @ignored_words ||= rules_hash["ignored_words"]
+  end
+
+  def implicit_verbs
+    @implicit_verbs ||= rules_hash["implicit_verbs"]
+  end
+
+  private
+
+  attr_reader :file_path
+
+  def rules_hash
+    @rules_hash ||= YAML.load(File.read(file_path))
+  end
 end

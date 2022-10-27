@@ -2,13 +2,13 @@
 
 require "./app/persist"
 require "./app/models/state"
+require "./config/constants"
 
 class BuildInitialState
-  START_GAME_FILE_PATH = "./config/initial_state.yml"
-
-  def self.perform
+  def self.perform(adventure)
     state = ::State.new
-    ::Persist.restore_using_file_path!(state, START_GAME_FILE_PATH)
+    file_path = "#{::Constants::ADVENTURES_DIRECTORY}/#{adventure}/initial_state.yml"
+    ::Persist.restore_using_file_path!(state, file_path)
     state
   end
 end

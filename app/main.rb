@@ -15,9 +15,12 @@ Dir["./app/verb/*.rb"].each { |file| require file }
 
 class Main
   def self.start
-    @state = ::BuildInitialState.perform
+    puts "Welcome to Infocom, an adventure inspired by the magical text-based games of the 1980s.\n\n"
+    print ::Text.colorize("Choose an adventure > ", 1)
+    @adventure = gets.chomp
+    @rules = ::Rules.new(@adventure)
+    @state = ::BuildInitialState.perform(@adventure)
 
-    puts "Welcome to Infocom, an adventure inspired by the magical text-based games of the 1980s."
     puts "Type 'help' for instructions."
 
     loop do
@@ -35,7 +38,7 @@ class Main
 
       break if endgame_condition == "died" || endgame_condition == "won"
 
-      print ::Text.colorize(">", 1)
+      print ::Text.colorize("> ", 1)
       input_text = gets.chomp
       response = parse_and_execute(input_text)
       puts ::Text.colorize(response, 0, 33) if response.present?
@@ -49,7 +52,7 @@ class Main
   # @param [String] input_text
   # @return [String (frozen)]
   def self.parse_and_execute(input_text)
-    command = ::ParseInput.perform(input_text, @state)
+    command = ::ParseInput.perform(input_text, @state, @rules)
     response = execute(command)
     @state.context.verb = command.verb
     @state.context.noun = command.noun

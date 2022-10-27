@@ -7,14 +7,15 @@ require "./app/models/command"
 class ParseInput
   # @param [String] input_text
   # @return ::Command
-  def self.perform(input_text, state)
-    new(input_text, state).perform
+  def self.perform(input_text, state, rules)
+    new(input_text, state, rules).perform
   end
 
   # @param [String] input_text
-  def initialize(input_text, state)
+  def initialize(input_text, state, rules)
     @words = input_text.to_s.downcase.split
     @state = state
+    @rules = rules
   end
 
   # @return ::Command
@@ -29,10 +30,10 @@ class ParseInput
 
   private
 
-  attr_reader :words, :state
+  attr_reader :words, :state, :rules
 
   def remove_ignored_words
-    words.reject! { |word| ::Rules::IGNORED_WORDS.include?(word) }
+    words.reject! { |word| rules.ignored_words.include?(word) }
   end
 
   def map_visible_item_names
@@ -49,11 +50,11 @@ class ParseInput
   end
 
   def map_synonyms
-    words.map! { |word| ::Rules::SYNONYMS[word] || word }
+    words.map! { |word| rules.synonyms[word] || word }
   end
 
   def add_implicit_verb
-    implicit_verb = ::Rules::IMPLICIT_VERBS[words.first]
+    implicit_verb = rules.implicit_verbs[words.first]
     words.unshift(implicit_verb) if implicit_verb
   end
 end

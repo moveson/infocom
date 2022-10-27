@@ -153,6 +153,7 @@ RSpec.describe ::Persist do
           locked: false
           openable: false
           opened: false
+          edible: false
           can_unlock: []
         - id: key
           name: iron key
@@ -166,6 +167,7 @@ RSpec.describe ::Persist do
           locked: false
           openable: false
           opened: false
+          edible: false
           can_unlock:
           - chest
         - id: chest
@@ -180,6 +182,7 @@ RSpec.describe ::Persist do
           locked: true
           openable: true
           opened: false
+          edible: false
           can_unlock: []
         locations:
         - id: quiet_meadow

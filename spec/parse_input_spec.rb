@@ -5,9 +5,11 @@ require "./app/models/item"
 require "./app/models/state"
 
 RSpec.describe ::ParseInput do
-  subject { described_class.new(command, state) }
+  subject { described_class.new(command, state, rules) }
   let(:command) { nil }
   let(:state) { ::State.new }
+  let(:rules) { ::Rules.new(adventure) }
+  let(:adventure) { "primis" }
 
   describe "#perform" do
     let(:result) { subject.perform }

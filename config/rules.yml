@@ -27,9 +27,9 @@ synonyms:
   why: what
 
   # Nouns
-  branches: trees
   grove: trees
   forest: trees
+  oak: tree
 
   # Prepositions
   into: in

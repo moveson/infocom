@@ -101,10 +101,18 @@ items:
   location_key: characters.squirrel
   size: 3
   can_unlock: chest
+- id: bag
+  name: paper bag
+  description: a tattered brown paper bag
+  location_key: items.slab
+  size: 20
+  capacity: 20
+  openable: true
+  opened: false
 - id: sandwich
   name: tasty sandwich
   description: a fresh peanut butter sandwich with the crusts cut off
-  location_key: items.slab
+  location_key: items.bag
   size: 10
   edible: true
 - id: slab
@@ -114,9 +122,9 @@ items:
   size: 999
   capacity: 100
   openable: false
+  opened: false
   lockable: false
   locked: false
-  opened: false
 - id: sword
   name: engraved sword
   description: a long sword with a golden hilt and strange engravings on the blade

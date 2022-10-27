@@ -5,9 +5,9 @@ Character = Struct.new(
   :name,
   :description,
   :described,
+  :location_key,
   :reactions,
   :trades,
-  :location_key,
   keyword_init: true
 ) do
 

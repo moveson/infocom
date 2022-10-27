@@ -57,6 +57,32 @@ RSpec.describe ::State do
     end
   end
 
+  describe "#characters_by_id" do
+    let(:result) { subject.characters_by_id }
+    let(:squirrel_character) do
+      ::Character.new(
+        id: "squirrel",
+        name: "bright-eyed squirrel",
+        description: "You see a squirrel.",
+        location_key: "top_of_oak_tree",
+        reactions: {
+          "talk" => "The squirrel chatters back at you."
+        },
+        trades: [
+          { "wants" => "sandwich", "gives" => "key", "description" => "Done deal."}
+        ],
+      )
+    end
+
+    let(:expected_result) do
+      { "squirrel" => squirrel_character }
+    end
+
+    it "returns a hash of characters indexed by id" do
+      expect(result).to eq(expected_result)
+    end
+  end
+
   describe "#player_location" do
     let(:result) { subject.player_location }
 

@@ -12,6 +12,7 @@ RSpec.describe ::Persist do
     let(:filename) { "saved_game_test_1" }
     let(:expected_locations) { [meadow_location, hill_location] }
     let(:expected_items) { [sword_item, key_item, chest_item] }
+    let(:expected_characters) { [squirrel_character] }
 
     let(:meadow_location) do
       ::Location.new(
@@ -79,6 +80,21 @@ RSpec.describe ::Persist do
       )
     end
 
+    let(:squirrel_character) do
+      ::Character.new(
+        id: "squirrel",
+        name: "bright-eyed squirrel",
+        description: "You see a squirrel.",
+        location_key: "top_of_oak_tree",
+        reactions: {
+          "talk" => "The squirrel chatters back at you."
+        },
+        trades: [
+          { "wants" => "sandwich", "gives" => "key", "description" => "Done deal."}
+        ],
+      )
+    end
+
     context "when the file exists" do
       it "returns true" do
         expect(result).to eq(true)
@@ -89,6 +105,7 @@ RSpec.describe ::Persist do
         expect(state.player_location_id).to eq("quiet_meadow")
         expect(state.locations).to match_array(expected_locations)
         expect(state.items).to match_array(expected_items)
+        expect(state.characters).to eq(expected_characters)
       end
     end
 
@@ -104,6 +121,7 @@ RSpec.describe ::Persist do
         expect(state.player_location_id).to be_nil
         expect(state.locations).to be_empty
         expect(state.items).to be_empty
+        expect(state.characters).to be_empty
         expect(state.context).to eq(::Context.new)
       end
     end
@@ -182,6 +200,18 @@ RSpec.describe ::Persist do
             west:
               location_id: quiet_meadow
           described: true
+        characters:
+        - id: squirrel
+          name: bright-eyed squirrel
+          description: You see a squirrel.
+          described: false
+          location_key: top_of_oak_tree
+          reactions:
+            talk: The squirrel chatters back at you.
+          trades:
+          - wants: sandwich
+            gives: key
+            description: Done deal.
         context:
           verb:
           noun:

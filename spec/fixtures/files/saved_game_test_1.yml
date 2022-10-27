@@ -46,3 +46,15 @@ items:
   locked: true
   openable: true
   opened: false
+
+characters:
+- id: squirrel
+  name: bright-eyed squirrel
+  description: You see a squirrel.
+  location_key: top_of_oak_tree
+  reactions:
+    talk: The squirrel chatters back at you.
+  trades:
+  - wants: sandwich
+    gives: key
+    description: Done deal.

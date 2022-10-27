@@ -9,6 +9,7 @@ require "./app/describe_location"
 require "./app/endgame"
 require "./app/parse_input"
 require "./app/text"
+require "./config/constants"
 
 require "./app/base_execute"
 Dir["./app/verb/*.rb"].each { |file| require file }
@@ -16,8 +17,10 @@ Dir["./app/verb/*.rb"].each { |file| require file }
 class Main
   def self.start
     puts "Welcome to Infocom, an adventure inspired by the magical text-based games of the 1980s.\n\n"
-    print ::Text.colorize("Choose an adventure > ", 1)
-    @adventure = gets.chomp
+
+    set_adventure
+    abort "Bye\n\n" if @adventure == "quit"
+
     @rules = ::Rules.new(@adventure)
     @state = ::BuildInitialState.perform(@adventure)
 
@@ -47,6 +50,18 @@ class Main
 
     puts "#{::Endgame.message(@state)}\n\n"
     puts "Number of turns: #{@state.turn_count}\n\n"
+  end
+
+  def self.set_adventure
+    available_adventures = Dir["#{::Constants::ADVENTURES_DIRECTORY}/*"].map { |path| path.split("/").last }
+    puts "Available adventures are:"
+    available_adventures.each { |adventure_name| puts "  #{adventure_name}" }
+    puts
+
+    while !available_adventures.include?(@adventure) && @adventure != "quit" do
+      print ::Text.colorize("Choose an adventure > ", 1)
+      @adventure = gets.chomp
+    end
   end
 
   # @param [String] input_text

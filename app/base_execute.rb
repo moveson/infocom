@@ -74,6 +74,11 @@ class BaseExecute
     visible_item(object)
   end
 
+  # @return [Boolean]
+  def object_location_detail?
+    state.player_location.details.include?(object)
+  end
+
   # @return [::Character, nil]
   def subject_character
     visible_character(noun)
@@ -96,6 +101,8 @@ class BaseExecute
 
   # @return [Class]
   def preposition_class
+    return if preposition.nil?
+
     "#{self.class.name}::#{preposition.classify}".safe_constantize
   end
 

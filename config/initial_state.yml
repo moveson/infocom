@@ -127,7 +127,7 @@ items:
 characters:
 - id: self
   reactions:
-    describe: "You are pretty much an average adventurer: Long on ambition, short on cash."
+    describe: You are pretty much an average adventurer, that is, long on ambition but short on cash.
     eat: That would be painful and gross.
     get: You are the master of your fate.
     help: I think you need a book for that.

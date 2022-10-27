@@ -4,6 +4,7 @@ require "fileutils"
 require "yaml"
 
 require "./app/models/context"
+require "./app/models/character"
 require "./app/models/item"
 require "./app/models/location"
 
@@ -50,6 +51,7 @@ class Persist
     state.player = ::Player.new(hash["player"])
     state.items = hash["items"].map { |item_attributes| ::Item.new(item_attributes) }
     state.locations = hash["locations"].map { |location_attributes| ::Location.new(location_attributes) }
+    state.characters = hash["characters"].map { |character_attributes| ::Character.new(character_attributes) }
     state.context = ::Context.new(hash["context"] || {})
     state.turn_count = hash["turn_count"] || 0
     true

@@ -3,6 +3,7 @@
 require "active_support/core_ext/string/inflections"
 
 require "./app/build_initial_state"
+require "./app/describe_characters"
 require "./app/describe_items"
 require "./app/describe_location"
 require "./app/endgame"
@@ -24,6 +25,7 @@ class Main
       break if endgame_condition == "quit"
 
       puts ::DescribeLocation.perform(@state)
+      puts ::DescribeCharacters.perform(@state)
       puts ::DescribeItems.perform(@state)
 
       break if endgame_condition == "died" || endgame_condition == "won"

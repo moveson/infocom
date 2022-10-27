@@ -9,6 +9,7 @@ State = Struct.new(
   :player,
   :items,
   :locations,
+  :characters,
   :context,
   :turn_count,
   keyword_init: true
@@ -20,6 +21,7 @@ State = Struct.new(
     self.player ||= ::Player.new
     self.items ||= []
     self.locations ||= []
+    self.characters ||= []
     self.context ||= ::Context.new
     self.turn_count ||= 0
   end
@@ -32,12 +34,20 @@ State = Struct.new(
     @items_by_id ||= items.index_by(&:id)
   end
 
+  def characters_by_id
+    @characters_by_id ||= characters.index_by(&:id)
+  end
+
   def children_of_item(item)
     items.select { |candidate_item| candidate_item.location_key == "items.#{item.id}"}
   end
 
   def items_at_player_location
     items.select { |item| item.location_key == player_location_id }
+  end
+
+  def characters_at_player_location
+    characters.select { |character| character.location_key == player_location_id }
   end
 
   def player_location
@@ -61,6 +71,7 @@ State = Struct.new(
       player: player.to_h,
       items: items.map(&:to_h),
       locations: locations.map(&:to_h),
+      characters: characters.map(&:to_h),
       context: context.to_h,
       turn_count: turn_count,
     }.deep_stringify_keys

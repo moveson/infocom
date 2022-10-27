@@ -32,7 +32,7 @@ locations:
   name: twisted trees
   description:
     general: You find yourself in a strange grove of twisted trees. A steep slope leads down to the north.
-    trees: The trees are densely packed together. The branches are small and prickly.
+    trees: The trees are densely packed together and the branches are small and prickly. On the southern end there is a gap that may allow passage.
     slope: It looks very steep and loose.
   neighbors:
     east:
@@ -43,11 +43,34 @@ locations:
         general: You lose your footing on the slippery slope and fall downwards...
       effects:
         player_health: -10
+    south:
+      location_id: oak_tree
 - id: deadly_pit
   name: deadly pit
   description:
     general: You are in a deep pit.
   neighbors:
+- id: oak_tree
+  name: oak tree
+  description:
+    general: You are at the base of a huge oak tree with many smaller trees all around. A tight gap in the trees leads north.
+    trees: They are unremarkable except for the huge oak.
+    tree: It has some branches in reach that would easily support your weight.
+  neighbors:
+    north:
+      location_id: twisted_trees
+    up:
+      location_id: top_of_oak_tree
+- id: top_of_oak_tree
+  name: top of oak tree
+  description:
+    general: You reach a comfortable perch high in the branches of the oak tree.
+    tree: The branches are smooth and easy to climb, but this is as high as you are able to climb.
+    branches: They are easy to grasp and a joy to climb.
+    perch: It's a nice place to rest.
+  neighbors:
+    down:
+      location_id: oak_tree
 - id: tropical_forest
   name: tropical forest
   description:
@@ -85,12 +108,30 @@ items:
 - id: key
   name: iron key
   description: a solid iron key
-  location_key: twisted_trees
+  location_key: characters.squirrel
   size: 3
   can_unlock: chest
 - id: sword
   name: engraved sword
-  description: a long sword with a golden hilt and strange engravings on the blade.
+  description: a long sword with a golden hilt and strange engravings on the blade
   text: Sunshine makes me happy :)
   location_key: items.chest
   size: 30
+
+characters:
+- id: squirrel
+  name: bright-eyed squirrel
+  description: Running among the branches is a squirrel with bright eyes and a long, quick tail.
+  location_key: top_of_oak_tree
+  reactions:
+    talk: The squirrel chatters back at you.
+    kill: I'm afraid he is much too fast.
+    get: The squirrel dodges as soon as you reach out for him.
+    open: You would have to catch him first!
+    read: Are you sure you're feeling all right?
+    sing: The squirrel seems to enjoy it.
+    unlock: Excuse me?
+  trades:
+  - wants: sandwich
+    gives: key
+    description: The squirrel takes the sandwich and disappears into the tree for a moment. Before long, he returns with a small key.

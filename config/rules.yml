@@ -2,10 +2,12 @@
 # Words matching these keys will be replaced with the respective values
 synonyms:
   # Directions
+  d: down
   e: east
   n: north
   s: south
   w: west
+  u: up
 
   # Verbs
   boogie: dance
@@ -16,6 +18,7 @@ synonyms:
   inv: inventory
   moonwalk: dance
   move: go
+  murder: kill
   place: put
   run: go
   take: get
@@ -47,7 +50,9 @@ ignored_words:
 # first word (verb) position, the associated value will be added in the
 # first word position.
 implicit_verbs:
+  down: go
   east: go
   north: go
   south: go
   west: go
+  up: go

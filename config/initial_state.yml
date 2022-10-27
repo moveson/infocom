@@ -95,6 +95,18 @@ items:
   locked: true
   openable: true
   opened: false
+- id: key
+  name: iron key
+  description: a solid iron key
+  location_key: characters.squirrel
+  size: 3
+  can_unlock: chest
+- id: sandwich
+  name: tasty sandwich
+  description: a fresh peanut butter sandwich with the crusts cut off
+  location_key: items.slab
+  size: 10
+  edible: true
 - id: slab
   name: stone slab
   description: a smooth stone slab about the size of a table
@@ -105,12 +117,6 @@ items:
   lockable: false
   locked: false
   opened: false
-- id: key
-  name: iron key
-  description: a solid iron key
-  location_key: characters.squirrel
-  size: 3
-  can_unlock: chest
 - id: sword
   name: engraved sword
   description: a long sword with a golden hilt and strange engravings on the blade
@@ -122,6 +128,7 @@ characters:
 - id: self
   reactions:
     describe: "You are pretty much an average adventurer: Long on ambition, short on cash."
+    eat: That would be painful and gross.
     get: You are the master of your fate.
     help: I think you need a book for that.
     kill: Choose to live!
@@ -136,6 +143,8 @@ characters:
   description: Running among the branches is a squirrel with bright eyes and a long, quick tail.
   location_key: top_of_oak_tree
   reactions:
+    describe: The squirrel acts like it wants something. Maybe it's hungry?
+    eat: He senses your plan and escapes.
     get: The squirrel dodges as soon as you reach out for him.
     kill: I'm afraid he is much too fast.
     open: You would have to catch him first!

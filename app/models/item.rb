@@ -13,6 +13,7 @@ Item = Struct.new(
   :locked,
   :openable,
   :opened,
+  :edible,
   :can_unlock,
   keyword_init: true
 ) do
@@ -26,6 +27,7 @@ Item = Struct.new(
     self.locked ||= false
     self.openable ||= false
     self.opened ||= false
+    self.edible ||= false
     self.can_unlock ||= []
   end
 
@@ -34,6 +36,7 @@ Item = Struct.new(
   alias locked? locked
   alias openable? openable
   alias opened? opened
+  alias edible? edible
 
   def container?
     openable? && capacity > 0

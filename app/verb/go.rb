@@ -19,7 +19,7 @@ module Verb
         "I can't go #{noun} from here."
       else
         new_location_id = destination["location_id"]
-        transition_description = destination["description"]
+        transition_description = destination.dig("description", "general")
         player_health_change = destination.dig("effects", "player_health") || 0
 
         state.player.health += player_health_change

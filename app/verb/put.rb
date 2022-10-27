@@ -8,11 +8,11 @@ module Verb
 
     # @return [String (frozen)]
     def contextual_response
-      if subject_item&.location_key == "inventory" || ::Interactions.item_takeable?(subject_item, state)
+      if subject_item && (subject_item.location_key == "inventory" || ::Interactions.item_takeable?(subject_item, state))
         if preposition_class.present?
           preposition_class.execute(command, state)
         elsif preposition.nil?
-          "You are going to have to say where you want to put the #{noun}."
+          "Where do you want to put the #{noun}?"
         else
           guaranteed_object = object || "something"
           "I don't know how to put a thing #{[preposition, guaranteed_object].join(' ')}."

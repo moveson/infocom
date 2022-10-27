@@ -29,12 +29,24 @@ class BaseExecute
 
   attr_reader :command, :noun, :preposition, :object, :state
 
+  def object_character
+    state.characters_by_id[object]
+  end
+
   def object_item
     state.items_by_id[object]
   end
 
+  def subject_character
+    state.characters_by_id[noun]
+  end
+
   def subject_item
     state.items_by_id[noun]
+  end
+
+  def subject_interactable
+    subject_character || subject_item
   end
 
   def preposition_class

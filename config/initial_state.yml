@@ -119,17 +119,29 @@ items:
   size: 30
 
 characters:
+- id: self
+  reactions:
+    describe: "You are pretty much an average adventurer: Long on ambition, short on cash."
+    get: You are the master of your fate.
+    help: I think you need a book for that.
+    kill: Choose to live!
+    lock: Your heart belongs to no one.
+    open: Ouch! No thanks.
+    read: You are a blank slate.
+    sing: Aren't you a cheerful one?
+    talk: You are quite a conversationalist.
+    unlock: Nice try.
 - id: squirrel
   name: bright-eyed squirrel
   description: Running among the branches is a squirrel with bright eyes and a long, quick tail.
   location_key: top_of_oak_tree
   reactions:
-    talk: The squirrel chatters back at you.
-    kill: I'm afraid he is much too fast.
     get: The squirrel dodges as soon as you reach out for him.
+    kill: I'm afraid he is much too fast.
     open: You would have to catch him first!
     read: Are you sure you're feeling all right?
     sing: The squirrel seems to enjoy it.
+    talk: The squirrel chatters back at you.
     unlock: Excuse me?
   trades:
   - wants: sandwich

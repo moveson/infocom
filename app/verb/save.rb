@@ -6,6 +6,13 @@ module Verb
   class Save < ::BaseExecute
     # @return [String (frozen)]
     def execute
+      contextual_response
+    end
+
+    private
+
+    # @return [String (frozen)]
+    def contextual_response
       if noun.nil? || noun == "game"
         print "Save the game under what filename? "
         response = gets.chomp

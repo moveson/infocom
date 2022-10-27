@@ -2,25 +2,23 @@
 
 module Verb
   class Open < ::BaseExecute
+    private
+
     # @return [String (frozen)]
-    def execute
-      if noun.nil?
-        "You will need to say what you want to open."
-      elsif subject_item.nil?
-        "I don't see #{noun.articleize} here."
-      elsif subject_item.location_key == state.player_location_id || subject_item.location_key == "inventory"
+    def contextual_response
+      if subject_item
         if subject_item.opened?
           "The #{noun} is already open."
-        elsif subject_item.container? && subject_item.unlocked?
+        elsif !subject_item.openable?
+          "You are unable to open the #{noun}."
+        elsif subject_item.unlocked?
           subject_item.opened = true
           "You open the #{noun}."
-        elsif subject_item.container? && subject_item.lockable?
-          "The #{noun} is locked."
         else
-          "You are unable to open the #{noun}."
+          "The #{noun} is locked."
         end
-      else
-        "I don't see #{noun.articleize} here."
+      elsif subject_character || subject_location_detail?
+        "You can't open the #{noun}."
       end
     end
   end

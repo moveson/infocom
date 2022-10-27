@@ -6,6 +6,17 @@ module Verb
   class Restore < ::BaseExecute
     # @return [String (frozen)]
     def execute
+      contextual_response
+    end
+
+    private
+
+    def noun_required?
+      false
+    end
+
+    # @return [String (frozen)]
+    def contextual_response
       if noun.nil? || noun == "game"
         print "Restore the game from what filename? "
         response = gets.chomp

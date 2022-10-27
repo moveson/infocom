@@ -2,7 +2,6 @@
 
 module Verb
   class What < ::BaseExecute
-    # @return [String (frozen)]
     RESPONSES = [
       "I'm just kind of a fake dungeon master; I don't answer questions.",
       "You'll have to figure that out on your own.",
@@ -16,7 +15,15 @@ module Verb
       "He who has a 'why' to live for can bear almost any 'how.'",
     ].freeze
 
+    # @return [String (frozen)]
     def execute
+      contextual_response
+    end
+
+    private
+
+    # @return [String (frozen)]
+    def contextual_response
       RESPONSES.sample
     end
   end

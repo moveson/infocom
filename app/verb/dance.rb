@@ -30,7 +30,14 @@ module Verb
       "Walking is good. Or maybe a nice shuffle?",
     ].freeze
 
-    def execute
+    private
+
+    def noun_required?
+      false
+    end
+
+    # @return [String (frozen)]
+    def contextual_response
       if DIRECTIONS.include?(noun)
         go_response = Go.execute(command, state)
 

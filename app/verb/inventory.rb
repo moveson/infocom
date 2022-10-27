@@ -4,6 +4,13 @@ module Verb
   class Inventory < ::BaseExecute
     # @return [String (frozen)]
     def execute
+      contextual_response
+    end
+
+    private
+
+    # @return [String (frozen)]
+    def contextual_response
       if state.inventory.present?
         text_segments = ["You are carrying:"]
 

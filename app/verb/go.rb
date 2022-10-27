@@ -4,6 +4,13 @@ module Verb
   class Go < ::BaseExecute
     # @return [String (frozen)]
     def execute
+      contextual_response
+    end
+
+    private
+
+    # @return [String (frozen)]
+    def contextual_response
       destination = state.player_location.neighbors[noun]
 
       if noun.nil?

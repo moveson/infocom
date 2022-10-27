@@ -5,8 +5,10 @@ require "./app/verb/drop"
 module Verb
   class Put < ::BaseExecute
     class On < ::BaseExecute
+      private
+
       # @return [String (frozen)]
-      def execute
+      def contextual_response
         proposed_parent = object_item
 
         if object.nil?

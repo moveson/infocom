@@ -2,13 +2,11 @@
 
 module Verb
   class Lock < ::BaseExecute
+    private
+
     # @return [String (frozen)]
-    def execute
-      if noun.nil?
-        "You will need to say what you want to lock."
-      elsif subject_item.nil?
-        "I don't see #{noun.articleize} here."
-      elsif subject_item.location_key == state.player_location_id || subject_item.location_key == "inventory"
+    def contextual_response
+      if subject_item
         if subject_item.locked?
           "The #{noun} is already locked."
         elsif state.inventory.any? { |item| item.can_unlock == noun }
@@ -19,8 +17,6 @@ module Verb
         else
           "You can't lock the #{noun}."
         end
-      else
-        "I don't see #{noun.articleize} here."
       end
     end
   end

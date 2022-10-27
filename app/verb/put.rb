@@ -4,11 +4,11 @@ Dir["./app/verb/put/*.rb"].each { |file| require file }
 
 module Verb
   class Put < ::BaseExecute
+    private
+
     # @return [String (frozen)]
-    def execute
-      if noun.nil?
-        "What did you want to put?"
-      elsif subject_item&.location_key == "inventory"
+    def contextual_response
+      if subject_item&.location_key == "inventory" || ::Interactions.item_takeable?(subject_item, state)
         if preposition_class.present?
           preposition_class.execute(command, state)
         elsif preposition.nil?

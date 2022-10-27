@@ -19,6 +19,7 @@ synonyms:
   place: put
   run: go
   take: get
+  travel: go
   walk: go
   waltz: dance
   when: what
@@ -27,13 +28,15 @@ synonyms:
   why: what
 
   # Nouns
-  grove: trees
   forest: trees
+  grove: trees
+  myself: self
   oak: tree
 
   # Prepositions
   into: in
   onto: "on"
+  within: in
 
 # These words will be ignored entirely
 ignored_words:

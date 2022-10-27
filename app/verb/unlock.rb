@@ -2,25 +2,23 @@
 
 module Verb
   class Unlock < ::BaseExecute
+    private
+
     # @return [String (frozen)]
-    def execute
-      if noun.nil?
-        "You will need to say what you want to unlock."
-      elsif subject_item.nil?
-        "I don't see #{noun.articleize} here."
-      elsif subject_item.location_key == state.player_location_id || subject_item.location_key == "inventory"
-        if subject_item.unlocked?
+    def contextual_response
+      if subject_item
+        if !subject_item.lockable?
+          "You are unable to unlock the #{noun}."
+        elsif subject_item.unlocked?
           "The #{noun} is already unlocked."
         elsif state.inventory.any? { |item| item.can_unlock == noun }
           subject_item.locked = false
           "You unlock the #{noun}."
-        elsif subject_item.lockable?
-          "You don't have anything that will unlock the #{noun}."
         else
-          "You are unable to unlock the #{noun}."
+          "You don't have anything that will unlock the #{noun}."
         end
-      else
-        "I don't see #{noun.articleize} here."
+      elsif subject_character || subject_location_detail?
+        "You can't unlock the #{noun}."
       end
     end
   end

@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Interactions
+  def self.visible_characters(state)
+    result = state.characters_at_player_location
+    result << state.characters_by_id["self"]
+    result
+  end
+
   def self.item_takeable?(item, state)
     item.location_key == state.player_location_id ||
       state.items_at_player_location.select(&:children_visible?).map(&:id).include?(item.parent_item_id)

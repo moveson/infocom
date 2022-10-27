@@ -2,11 +2,11 @@
 
 module Verb
   class Drop < ::BaseExecute
+    private
+
     # @return [String (frozen)]
-    def execute
-      if noun.nil?
-        "What did you want to drop?"
-      elsif subject_item&.location_key == "inventory"
+    def contextual_response
+      if subject_item&.location_key == "inventory"
         subject_item.location_key = state.player_location_id
         "You drop the #{noun}."
       else

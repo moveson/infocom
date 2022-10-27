@@ -24,9 +24,14 @@ class Main
       endgame_condition = ::Endgame.condition(@state)
       break if endgame_condition == "quit"
 
-      puts ::DescribeLocation.perform(@state)
-      puts ::DescribeCharacters.perform(@state)
-      puts ::DescribeItems.perform(@state)
+      location_text = ::DescribeLocation.perform(@state)
+      characters_text = ::DescribeCharacters.perform(@state)
+      items_text = ::DescribeItems.perform(@state)
+
+      puts location_text if location_text.present?
+      puts characters_text if characters_text.present?
+      puts items_text if items_text.present?
+      puts
 
       break if endgame_condition == "died" || endgame_condition == "won"
 

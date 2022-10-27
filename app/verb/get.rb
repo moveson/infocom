@@ -5,13 +5,13 @@ require "./app/interactions"
 
 module Verb
   class Get < ::BaseExecute
-    # @return [String (frozen)]
-    def execute
-      if noun.nil?
-        "You will need to say what you want me to get."
-      elsif subject_item.nil?
-        "I don't see #{noun.articleize} here."
-      elsif ::Interactions.item_takeable?(subject_item, state)
+    private
+
+    # @return [String (frozen), nil]
+    def contextual_response
+      if noun == "out"
+        "You are going to have to be more specific."
+      elsif subject_item && ::Interactions.item_takeable?(subject_item, state)
         remaining_capacity = PlayerConstants::CARRY_CAPACITY_SIZE - state.inventory.sum(&:size)
 
         if remaining_capacity >= subject_item.size
@@ -20,8 +20,8 @@ module Verb
         else
           "You can't carry the #{noun}."
         end
-      else
-        "I don't see #{noun.articleize} here."
+      elsif subject_item || subject_character || subject_location_detail?
+        "You can't get the #{noun}."
       end
     end
   end

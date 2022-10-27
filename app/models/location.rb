@@ -19,4 +19,8 @@ Location = Struct.new(
   def general_description
     description["general"]
   end
+
+  def details
+    description.keys.reject { |key| key == "general" }
+  end
 end

@@ -12,7 +12,15 @@ module Verb
       "Your supper does not appear."
     ].freeze
 
-    def execute
+    # @return [String (frozen)]
+    private
+
+    def noun_required?
+      false
+    end
+
+    # @return [String (frozen)]
+    def contextual_response
       RESPONSES.sample
     end
   end

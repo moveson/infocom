@@ -26,6 +26,11 @@ synonyms:
   who: what
   why: what
 
+  # Nouns
+  branches: trees
+  grove: trees
+  forest: trees
+
   # Prepositions
   into: in
   onto: "on"

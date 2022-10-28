@@ -90,7 +90,7 @@ RSpec.describe ::Persist do
           "talk" => "The squirrel chatters back at you."
         },
         trades: [
-          { "wants" => "sandwich", "gives" => "key", "description" => "Done deal."}
+          { "accepts" => "sandwich", "gives" => "key", "description" => "Done deal."}
         ],
       )
     end
@@ -214,7 +214,7 @@ RSpec.describe ::Persist do
           reactions:
             talk: The squirrel chatters back at you.
           trades:
-          - wants: sandwich
+          - accepts: sandwich
             gives: key
             description: Done deal.
       CONTENTS

@@ -10,7 +10,7 @@ module Verb
         if object.nil?
           "Who do you want to give the #{noun} to?"
         elsif object_character.present?
-          proposed_trade = object_character.trades.find { |trade| trade["wants"] == noun }
+          proposed_trade = object_character.trades.find { |trade| trade["accepts"] == noun }
 
           if proposed_trade.nil?
             "The #{object} doesn't want the #{noun}."

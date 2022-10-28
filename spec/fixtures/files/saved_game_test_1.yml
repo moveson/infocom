@@ -57,6 +57,6 @@ characters:
   reactions:
     talk: The squirrel chatters back at you.
   trades:
-  - wants: sandwich
+  - accepts: sandwich
     gives: key
     description: Done deal.

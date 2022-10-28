@@ -25,5 +25,15 @@ RSpec.describe Inflections do
       let(:text) { "oaken chest" }
       it { expect(result).to eq("an") }
     end
+
+    context "for words that buck the first-letter trend" do
+      let(:text) { "honest" }
+      it { expect(result).to eq("an") }
+    end
+
+    context "for hyphenated words" do
+      let(:text) { "honest-to-goodness" }
+      it { expect(result).to eq("an") }
+    end
   end
 end

@@ -10,6 +10,7 @@ module Verb
     private
 
     def contextual_response
+      state.player.quitting = true
       ""
     end
   end

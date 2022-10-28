@@ -11,7 +11,6 @@ State = Struct.new(
   :items,
   :locations,
   :characters,
-  :context,
   keyword_init: true
 ) do
 
@@ -22,7 +21,6 @@ State = Struct.new(
     self.items ||= []
     self.locations ||= []
     self.characters ||= []
-    self.context ||= ::Context.new
   end
 
   def locations_by_id
@@ -72,7 +70,6 @@ State = Struct.new(
       items: items.map(&:to_h),
       locations: locations.map(&:to_h),
       characters: characters.map(&:to_h),
-      context: context.to_h,
     }.deep_stringify_keys
 
     hash.to_yaml

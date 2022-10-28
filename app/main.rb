@@ -68,10 +68,7 @@ class Main
   # @return [String (frozen)]
   def self.parse_and_execute(input_text)
     command = ::ParseInput.perform(input_text, @state, @rules)
-    response = execute(command)
-    @state.context.verb = command.verb
-    @state.context.noun = command.noun
-    response
+    execute(command)
   end
 
   # @param [::Command] command

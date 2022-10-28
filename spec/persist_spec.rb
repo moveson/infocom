@@ -122,7 +122,6 @@ RSpec.describe ::Persist do
         expect(state.locations).to be_empty
         expect(state.items).to be_empty
         expect(state.characters).to be_empty
-        expect(state.context).to eq(::Context.new)
       end
     end
   end
@@ -142,6 +141,7 @@ RSpec.describe ::Persist do
           location_id: quiet_meadow
           health: 10
           turn_count: 0
+          quitting: false
         items:
         - id: sword
           name: engraved sword
@@ -217,9 +217,6 @@ RSpec.describe ::Persist do
           - wants: sandwich
             gives: key
             description: Done deal.
-        context:
-          verb:
-          noun:
       CONTENTS
     end
 

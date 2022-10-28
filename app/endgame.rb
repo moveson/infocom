@@ -8,7 +8,7 @@ class Endgame
       "died"
     elsif state.player_location_id == "sunlit_hill" && state.items_by_id["sword"].location_key == "items.slab"
       "won"
-    elsif state.context.verb == "quit"
+    elsif state.player.quitting?
       "quit"
     else
       "in_progress"

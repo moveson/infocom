@@ -12,7 +12,7 @@ locations:
     trees: They are too far away to see details from here.
     path: A well-worn path leads east and west from here. It looks safe enough.
     track: The track is a bit overgrown but otherwise unremarkable.
-  neighbors:
+  movements:
     east:
       location_id: sunlit_hill
     west:
@@ -25,7 +25,7 @@ locations:
     general: You climb to the top of a sunny hill. A path leads to the west.
     hill: Nice view from up here.
     path: It's a well-used path heading down the hill to the west.
-  neighbors:
+  movements:
     west:
       location_id: quiet_meadow
 - id: twisted_trees
@@ -34,7 +34,7 @@ locations:
     general: You find yourself in a strange grove of twisted trees. A steep slope leads down to the north.
     trees: The trees are densely packed together and the branches are small and prickly. On the southern end there is a gap that may allow passage.
     slope: It looks very steep and loose.
-  neighbors:
+  movements:
     east:
       location_id: quiet_meadow
     north:
@@ -49,14 +49,14 @@ locations:
   name: deadly pit
   description:
     general: You are in a deep pit.
-  neighbors:
+  movements:
 - id: oak_tree
   name: oak tree
   description:
     general: You are at the base of a huge oak tree with many smaller trees all around. A tight gap in the trees leads north.
     trees: They are unremarkable except for the huge oak.
     tree: It has some branches in reach that would easily support your weight.
-  neighbors:
+  movements:
     north:
       location_id: twisted_trees
     tree:
@@ -74,7 +74,7 @@ locations:
     tree: The branches are smooth and easy to climb, but this is as high as you are able to climb.
     branches: They are easy to grasp and a joy to climb.
     perch: It's a nice place to rest.
-  neighbors:
+  movements:
     down:
       location_id: oak_tree
       description:
@@ -86,7 +86,7 @@ locations:
     trees: The trees are tightly packed with dense underbrush growing underneath.
     vines: The vines wind around the trees.
     flowers: These are large flowers with an unpleasant smell.
-  neighbors:
+  movements:
     west:
       location_id: twisted_trees
     north:

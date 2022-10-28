@@ -4,7 +4,7 @@ Location = Struct.new(
   :id,
   :name,
   :description,
-  :neighbors,
+  :movements,
   :described,
   keyword_init: true
 ) do
@@ -12,7 +12,7 @@ Location = Struct.new(
   # Default values go here
   def initialize(*)
     super
-    self.neighbors ||= {}
+    self.movements ||= {}
     self.described ||= false
   end
 

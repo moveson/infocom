@@ -8,7 +8,7 @@ module Verb
 
     # @return [String (frozen), nil]
     def contextual_response
-      if state.player_location.neighbors[noun]
+      if state.player_location.movements[noun]
         Go.execute(command, state)
       elsif subject_character
         "That would not be polite."

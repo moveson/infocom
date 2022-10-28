@@ -11,7 +11,7 @@ module Verb
 
     # @return [String (frozen)]
     def contextual_response
-      destination = state.player_location.neighbors[noun]
+      destination = state.player_location.movements[noun]
 
       if noun.nil?
         "You will need to say where you want me to go."

@@ -22,7 +22,7 @@ RSpec.describe ::Persist do
           "general" => "You find yourself in a quiet meadow.",
         },
         "described" => false,
-        "neighbors" => {
+        "movements" => {
           "east" => { "location_id" => "sunlit_hill" },
           "west" => { "location_id" => "twisted_trees" },
         },
@@ -37,7 +37,7 @@ RSpec.describe ::Persist do
           "general" => "A sunlit hill.",
         },
         "described" => true,
-        "neighbors" => {
+        "movements" => {
           "west" => { "location_id" => "quiet_meadow" },
         },
       )
@@ -189,7 +189,7 @@ RSpec.describe ::Persist do
           name: quiet meadow
           description:
             general: You find yourself in a quiet meadow.
-          neighbors:
+          movements:
             east:
               location_id: sunlit_hill
             west:
@@ -199,7 +199,7 @@ RSpec.describe ::Persist do
           name: sunlit hill
           description:
             general: A sunlit hill.
-          neighbors:
+          movements:
             west:
               location_id: quiet_meadow
           described: true

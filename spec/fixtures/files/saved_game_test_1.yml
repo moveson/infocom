@@ -8,7 +8,7 @@ locations:
   name: quiet meadow
   description:
     general: You find yourself in a quiet meadow.
-  neighbors:
+  movements:
     east:
       location_id: sunlit_hill
     west:
@@ -18,7 +18,7 @@ locations:
   description:
     general: A sunlit hill.
   described: true
-  neighbors:
+  movements:
     west:
       location_id: quiet_meadow
 

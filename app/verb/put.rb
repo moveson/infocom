@@ -17,6 +17,8 @@ module Verb
           guaranteed_object = object || "something"
           "I don't know how to put a thing #{[preposition, guaranteed_object].join(' ')}."
         end
+      elsif subject_character
+        "The #{noun} has other ideas."
       else
         "You aren't carrying #{noun.articleize}."
       end

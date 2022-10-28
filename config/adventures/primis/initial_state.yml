@@ -150,6 +150,7 @@ characters:
     kill: Choose to live!
     lock: Your heart belongs to no one.
     open: Ouch! No thanks.
+    put: You can't put yourself somewhere. Try moving instead.
     read: You are a blank slate.
     sing: Aren't you a cheerful one?
     talk: You are quite a conversationalist.
@@ -164,6 +165,7 @@ characters:
     get: The squirrel dodges as soon as you reach out for him.
     kill: I'm afraid he is much too fast.
     open: You would have to catch him first!
+    put: Have you ever tried putting a squirrel into something?
     read: Are you sure you're feeling all right?
     sing: The squirrel seems to enjoy it.
     talk: The squirrel chatters back at you.

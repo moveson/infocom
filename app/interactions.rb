@@ -11,6 +11,11 @@ class Interactions
     takeable_items(state).include?(item)
   end
 
+  def self.items_in_possession(state)
+    visible_children = state.inventory.flat_map { |item| visible_children_of_item(item, state) }
+    state.inventory + visible_children
+  end
+
   def self.parent_can_accept_child?(proposed_parent, proposed_child, state)
     return false unless proposed_parent.container? && proposed_parent.opened?
 

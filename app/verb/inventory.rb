@@ -15,7 +15,14 @@ module Verb
         text_segments = ["You are carrying:"]
 
         state.inventory.each do |item|
-          text_segments << "  #{item.name.articleize}"
+          visible_contents = ::Interactions.visible_children_of_item(item, state)
+          additional_text = visible_contents.empty? ? "" : ", which contains:"
+
+          text_segments << "  #{item.name.articleize}#{additional_text}"
+
+          visible_contents.each do |child_item|
+            text_segments << "    #{child_item.name.articleize}"
+          end
         end
 
         text_segments.join("\n")

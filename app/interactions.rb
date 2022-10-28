@@ -11,6 +11,14 @@ class Interactions
     takeable_items(state).include?(item)
   end
 
+  def self.parent_can_accept_child?(proposed_parent, proposed_child, state)
+    return false unless proposed_parent.container? && proposed_parent.opened?
+
+    existing_children = state.children_of_item(proposed_parent)
+    remaining_capacity = proposed_parent.capacity - existing_children.sum(&:size)
+    remaining_capacity >= proposed_child.size
+  end
+
   def self.takeable_items(state)
     visible_items(state) - state.inventory
   end

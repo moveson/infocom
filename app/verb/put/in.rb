@@ -15,11 +15,15 @@ module Verb
           if proposed_parent == subject_item
             "You can't put something into itself."
           elsif state.items_at_player_location.include?(proposed_parent) || state.inventory.include?(proposed_parent)
-            if proposed_parent.container? && proposed_parent.opened?
+            if ::Interactions.parent_can_accept_child?(proposed_parent, subject_item, state)
               subject_item.location_key = "items.#{proposed_parent.id}"
               "You put the #{noun} into the #{object}."
-            elsif proposed_parent.container? && proposed_parent.closed?
-              "The #{object} is closed."
+            elsif proposed_parent.container?
+              if proposed_parent.opened?
+                "The #{noun} won't fit into the #{object}."
+              else
+                "The #{object} is closed."
+              end
             else
               "You can't put anything into the #{object}."
             end

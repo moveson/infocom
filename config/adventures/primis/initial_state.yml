@@ -59,8 +59,14 @@ locations:
   neighbors:
     north:
       location_id: twisted_trees
+    tree:
+      location_id: top_of_oak_tree
+      description:
+        general: You scramble up the branches toward the top of the tree.
     up:
       location_id: top_of_oak_tree
+      description:
+        general: You scramble up the branches toward the top of the tree.
 - id: top_of_oak_tree
   name: top of oak tree
   description:
@@ -71,6 +77,8 @@ locations:
   neighbors:
     down:
       location_id: oak_tree
+      description:
+        general: You let yourself down the branches to the ground.
 - id: tropical_forest
   name: tropical forest
   description:

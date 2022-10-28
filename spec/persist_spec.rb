@@ -130,13 +130,14 @@ RSpec.describe ::Persist do
   describe ".save" do
     let(:result) { described_class.save(state, filename) }
     let(:filename) { "saved_game_test_temp" }
-    let(:state) { ::State.new }
+    let(:state) { ::State.new(adventure: "test") }
     let(:load_file_path) { "./spec/fixtures/files/saved_game_test_1.yml" }
-    let(:temp_file_path) { described_class.path_from_filename(filename) }
+    let(:temp_file_path) { described_class.path_from_filename(filename, state) }
 
     let(:expected_contents) do
       <<~CONTENTS
         ---
+        adventure: test
         player:
           location_id: quiet_meadow
           health: 10

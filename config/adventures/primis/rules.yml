@@ -44,6 +44,7 @@ synonyms:
 # These words will be ignored entirely
 ignored_words:
 - a
+- an
 - the
 
 # If a word matching any of the following keys is found in the

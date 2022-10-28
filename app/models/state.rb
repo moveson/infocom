@@ -12,7 +12,6 @@ State = Struct.new(
   :locations,
   :characters,
   :context,
-  :turn_count,
   keyword_init: true
 ) do
 
@@ -24,7 +23,6 @@ State = Struct.new(
     self.locations ||= []
     self.characters ||= []
     self.context ||= ::Context.new
-    self.turn_count ||= 0
   end
 
   def locations_by_id
@@ -75,7 +73,6 @@ State = Struct.new(
       locations: locations.map(&:to_h),
       characters: characters.map(&:to_h),
       context: context.to_h,
-      turn_count: turn_count,
     }.deep_stringify_keys
 
     hash.to_yaml

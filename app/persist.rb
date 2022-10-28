@@ -55,7 +55,6 @@ class Persist
     state.locations = hash["locations"].map { |location_attributes| ::Location.new(location_attributes) }
     state.characters = hash["characters"].map { |character_attributes| ::Character.new(character_attributes) }
     state.context = ::Context.new(hash["context"] || {})
-    state.turn_count = hash["turn_count"] || 0
     true
   rescue => e
     puts e

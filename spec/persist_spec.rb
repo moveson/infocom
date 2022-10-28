@@ -141,6 +141,7 @@ RSpec.describe ::Persist do
         player:
           location_id: quiet_meadow
           health: 10
+          turn_count: 0
         items:
         - id: sword
           name: engraved sword
@@ -219,7 +220,6 @@ RSpec.describe ::Persist do
         context:
           verb:
           noun:
-        turn_count: 0
       CONTENTS
     end
 

@@ -1,4 +1,6 @@
 ---
+adventure: primis
+
 player:
   location_id: quiet_meadow
   health: 10

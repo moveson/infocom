@@ -11,12 +11,13 @@ require "./app/models/location"
 class Persist
   SAVED_FILE_DIRECTORY = "./saved_games"
 
-  # @param [State] state
+  # @param [::State] state
   # @param [String] filename
   # @return [Boolean]
   def self.save(state, filename)
     FileUtils.mkdir_p(SAVED_FILE_DIRECTORY)
-    path = path_from_filename(filename)
+    FileUtils.mkdir_p("#{SAVED_FILE_DIRECTORY}/#{state.adventure}")
+    path = path_from_filename(filename, state)
 
     if File.exist?(path)
       print "File exists. Replace? (y/n) "
@@ -38,16 +39,17 @@ class Persist
   # @param [String] filename
   # @return [Boolean]
   def self.restore_using_filename!(state, filename)
-    restore_using_file_path!(state, path_from_filename(filename))
+    restore_using_file_path!(state, path_from_filename(filename, state))
   end
 
-  # @param [State] state
+  # @param [::State] state
   # @param [String] file_path
   # @return [Boolean]
   def self.restore_using_file_path!(state, file_path)
     return false unless File.exist?(file_path)
 
     hash = ::YAML.load(File.read(file_path))
+    state.adventure = hash["adventure"]
     state.player = ::Player.new(hash["player"])
     state.items = hash["items"].map { |item_attributes| ::Item.new(item_attributes) }
     state.locations = hash["locations"].map { |location_attributes| ::Location.new(location_attributes) }
@@ -61,8 +63,9 @@ class Persist
   end
 
   # @param [String] filename
+  # @param [::State] state
   # @return [String (frozen)]
-  def self.path_from_filename(filename)
-    "#{SAVED_FILE_DIRECTORY}/#{filename}.yml"
+  def self.path_from_filename(filename, state)
+    "#{SAVED_FILE_DIRECTORY}/#{state.adventure}/#{filename}.yml"
   end
 end

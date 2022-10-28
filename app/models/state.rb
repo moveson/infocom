@@ -6,6 +6,7 @@ require "./app/models/context"
 require "./app/models/player"
 
 State = Struct.new(
+  :adventure,
   :player,
   :items,
   :locations,
@@ -68,6 +69,7 @@ State = Struct.new(
 
   def to_yaml
     hash = {
+      adventure: adventure,
       player: player.to_h,
       items: items.map(&:to_h),
       locations: locations.map(&:to_h),

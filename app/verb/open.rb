@@ -13,7 +13,13 @@ module Verb
           "You are unable to open the #{noun}."
         elsif subject_item.unlocked?
           subject_item.opened = true
-          "You open the #{noun}."
+
+          text_segments = ["You open the #{noun}."]
+          ::Interactions.visible_children_of_item(subject_item, state).each do |item|
+            text_segments << "It contains #{item.name.articleize}"
+          end
+
+          text_segments.join("\n")
         else
           "The #{noun} is locked."
         end

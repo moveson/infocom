@@ -11,8 +11,8 @@ module Verb
       elsif subject_character
         subject_character.description
       elsif subject_item
-        subject_item.described = true
-        subject_item.description
+        subject_item.described = false
+        ::DescribeItem.perform(subject_item, state)
       end
     end
   end

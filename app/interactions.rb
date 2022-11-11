@@ -35,7 +35,14 @@ class Interactions
     visible_parent_items.each do |item|
       next unless item.children_possible?
 
-      result += visible_children_of_item(item, state)
+      child_items = visible_children_of_item(item, state)
+      result += child_items
+
+      child_items.each do |child_item|
+        next unless child_item.children_possible?
+
+        result += visible_children_of_item(child_item, state)
+      end
     end
 
     result

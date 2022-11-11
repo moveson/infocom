@@ -33,16 +33,7 @@ class Interactions
     result = visible_parent_items
 
     visible_parent_items.each do |item|
-      next unless item.children_possible?
-
-      child_items = visible_children_of_item(item, state)
-      result += child_items
-
-      child_items.each do |child_item|
-        next unless child_item.children_possible?
-
-        result += visible_children_of_item(child_item, state)
-      end
+      result += visible_children_of_item(item, state)
     end
 
     result
@@ -50,7 +41,14 @@ class Interactions
 
   def self.visible_children_of_item(item, state)
     if item.children_visible?
-      state.children_of_item(item)
+      child_items = state.children_of_item(item)
+      result = child_items
+
+      child_items.each do |child_item|
+        result += visible_children_of_item(child_item, state)
+      end
+
+      result
     else
       []
     end

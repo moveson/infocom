@@ -20,6 +20,7 @@ synonyms:
   move: go
   murder: kill
   place: put
+  observe: describe
   run: go
   take: get
   travel: go

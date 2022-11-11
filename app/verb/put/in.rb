@@ -14,7 +14,7 @@ module Verb
         elsif proposed_parent.present?
           if proposed_parent == subject_item
             "You can't put something into itself."
-          elsif state.items_at_player_location.include?(proposed_parent) || state.inventory.include?(proposed_parent)
+          elsif ::Interactions.visible_items(state).include?(proposed_parent)
             if ::Interactions.parent_can_accept_child?(proposed_parent, subject_item, state)
               subject_item.location_key = "items.#{proposed_parent.id}"
               "You put the #{noun} into the #{object}."

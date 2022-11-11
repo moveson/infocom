@@ -10,6 +10,7 @@ synonyms:
   u: up
 
   # Verbs
+  attack: kill
   boogie: dance
   examine: describe
   grab: get
@@ -47,6 +48,7 @@ ignored_words:
 - a
 - an
 - the
+- to
 
 # If a word matching any of the following keys is found in the
 # first word (verb) position, the associated value will be added in the

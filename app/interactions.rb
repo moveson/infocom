@@ -23,7 +23,7 @@ class Interactions
   def self.parent_can_accept_child?(proposed_parent, proposed_child, state)
     return false unless proposed_parent.container? && proposed_parent.opened?
 
-    existing_children = state.children_of_item(proposed_parent)
+    existing_children = children_of_item(proposed_parent, state)
     remaining_capacity = proposed_parent.capacity - existing_children.sum(&:size)
     remaining_capacity >= proposed_child.size
   end
@@ -43,9 +43,13 @@ class Interactions
     result
   end
 
+  def self.children_of_item(item, state)
+    state.items.select { |candidate_item| candidate_item.location_key == "items.#{item.id}"}
+  end
+
   def self.visible_children_of_item(item, state)
     if item.children_visible?
-      child_items = state.children_of_item(item)
+      child_items = children_of_item(item, state)
       result = child_items
 
       child_items.each do |child_item|

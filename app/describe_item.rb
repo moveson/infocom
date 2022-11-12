@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "./app/interactions"
+
 class DescribeItem
   # @param [::Item] item
   # @param [::State] state
@@ -36,7 +38,7 @@ class DescribeItem
   attr_reader :item, :state, :text_segments
 
   def add_text_from_contents
-    contents = state.children_of_item(item)
+    contents = ::Interactions.children_of_item(item, state)
 
     if item.container?
       if contents.present?

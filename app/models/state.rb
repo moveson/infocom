@@ -37,10 +37,6 @@ State = Struct.new(
     @characters_by_id ||= characters.index_by(&:id)
   end
 
-  def children_of_item(item)
-    items.select { |candidate_item| candidate_item.location_key == "items.#{item.id}"}
-  end
-
   def items_at_player_location
     items.select { |item| item.location_key == player_location_id }
   end

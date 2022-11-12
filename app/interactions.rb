@@ -43,22 +43,20 @@ class Interactions
     result
   end
 
-  def self.children_of_item(item, state)
-    state.items.select { |candidate_item| candidate_item.location_key == "items.#{item.id}"}
+  def self.visible_children_of_item(item, state)
+    return [] unless item.children_visible?
+
+    child_items = children_of_item(item, state)
+    result = child_items
+
+    child_items.each do |child_item|
+      result += visible_children_of_item(child_item, state)
+    end
+
+    result
   end
 
-  def self.visible_children_of_item(item, state)
-    if item.children_visible?
-      child_items = children_of_item(item, state)
-      result = child_items
-
-      child_items.each do |child_item|
-        result += visible_children_of_item(child_item, state)
-      end
-
-      result
-    else
-      []
-    end
+  def self.children_of_item(item, state)
+    state.items.select { |candidate_item| candidate_item.location_key == "items.#{item.id}" }
   end
 end

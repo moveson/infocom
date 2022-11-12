@@ -24,7 +24,7 @@ class Endgame
     won_lost_message = state.messages[condition]
     turns_message = "Number of turns: #{state.player.turn_count}\n\n"
 
-    [won_lost_message, turns_message].join("\n") + "\n\n"
+    [won_lost_message, turns_message].join("\n")
   end
 
   # @return [String (frozen)]

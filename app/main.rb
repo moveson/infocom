@@ -9,6 +9,7 @@ require "./app/describe_location"
 require "./app/endgame"
 require "./app/parse_input"
 require "./app/text"
+require "./app/turn_logger"
 require "./config/constants"
 
 require "./app/base_execute"
@@ -23,6 +24,7 @@ class Main
 
     @rules = ::Rules.new(@adventure)
     @state = ::BuildInitialState.perform(@adventure)
+    @turn_logger = ::TurnLogger.new(@adventure)
 
     puts @state.messages["welcome"]
 
@@ -30,10 +32,9 @@ class Main
       location_text = ::DescribeLocation.perform(@state)
       characters_text = ::DescribeCharacters.perform(@state)
       items_text = ::DescribeItems.perform(@state)
+      full_description_text = [location_text, characters_text, items_text].compact.join("\n")
 
-      puts location_text if location_text.present?
-      puts characters_text if characters_text.present?
-      puts items_text if items_text.present?
+      puts full_description_text
       puts
 
       break unless ::Endgame.condition(@state) == "in_progress"
@@ -45,6 +46,7 @@ class Main
       puts ::Text.colorize(response, 0, 33) if response.present?
 
       @state.player.turn_count += 1
+      @turn_logger.log(@state, full_description_text, input_text, command, response)
       break if @state.player.quitting?
     end
 

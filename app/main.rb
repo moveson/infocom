@@ -45,7 +45,7 @@ class Main
       puts ::Text.colorize(response, 0, 33) if response.present?
 
       @state.player.turn_count += 1
-      break if @state.player.quitting
+      break if @state.player.quitting?
     end
 
     puts ::Endgame.message(@state)

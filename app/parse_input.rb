@@ -23,6 +23,7 @@ class ParseInput
     remove_ignored_words
     map_visible_item_names
     map_synonyms
+    map_multi_word_synonyms
     add_implicit_verb
 
     ::Command.new(verb: words[0], noun: words[1], preposition: words[2], object: words[3])
@@ -51,6 +52,17 @@ class ParseInput
 
   def map_synonyms
     words.map! { |word| rules.synonyms[word] || word }
+  end
+
+  def map_multi_word_synonyms
+    words.each_cons(2).with_index do |word_pair, index|
+      matching_value = rules.synonyms[word_pair.join("_")]
+
+      if matching_value
+        words[index] = matching_value
+        words.delete_at(index + 1)
+      end
+    end
   end
 
   def add_implicit_verb

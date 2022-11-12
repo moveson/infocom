@@ -24,6 +24,7 @@ synonyms:
   place: put
   observe: describe
   run: go
+  speak: talk
   take: get
   travel: go
   walk: go
@@ -43,6 +44,10 @@ synonyms:
   into: in
   onto: "on"
   within: in
+
+  # Multi-word synonyms
+  talk_to: talk
+  sing_to: sing
 
 # These words will be ignored entirely
 ignored_words:

@@ -15,7 +15,6 @@ class Persist
   # @param [String] filename
   # @return [Boolean]
   def self.save(state, filename)
-    FileUtils.mkdir_p(SAVED_FILE_DIRECTORY)
     FileUtils.mkdir_p("#{SAVED_FILE_DIRECTORY}/#{state.adventure}")
     path = path_from_filename(filename, state)
 

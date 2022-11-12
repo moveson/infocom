@@ -7,8 +7,7 @@ class TurnLogger
 
   def initialize(adventure)
     filename = ::Time.now.to_i
-    ::FileUtils.mkdir_p(TURN_LOG_DIRECTORY)
-    ::FileUtils.mkdir_p("#{TURN_LOG_DIRECTORY}/#{adventure}")
+    @adventure = adventure
     @path = "#{TURN_LOG_DIRECTORY}/#{adventure}/#{filename}.log"
     write_log_header
   end
@@ -37,9 +36,11 @@ class TurnLogger
 
   private
 
-  attr_reader :path
+  attr_reader :adventure, :path
 
   def write_log_header
+    ::FileUtils.mkdir_p "#{TURN_LOG_DIRECTORY}/#{adventure}"
+
     ::File.open(path, "a") do |file|
       file.write "#{path}\n"
       file.write "#{Time.now}\n"

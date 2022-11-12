@@ -36,6 +36,12 @@ class Persist
     false
   end
 
+  # @return [Array<String>]
+  def self.saved_games(state)
+    paths = Dir["#{SAVED_FILE_DIRECTORY}/#{state.adventure}/*.yml"]
+    paths.map { |path| path.split("/").last.split(".").first }
+  end
+
   # @param [String] filename
   # @return [Boolean]
   def self.restore_using_filename!(state, filename)

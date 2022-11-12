@@ -24,12 +24,9 @@ class Main
     @rules = ::Rules.new(@adventure)
     @state = ::BuildInitialState.perform(@adventure)
 
-    puts "Type 'help' for instructions."
+    puts @state.messages["welcome"]
 
     loop do
-      endgame_condition = ::Endgame.condition(@state)
-      break if endgame_condition == "quit"
-
       location_text = ::DescribeLocation.perform(@state)
       characters_text = ::DescribeCharacters.perform(@state)
       items_text = ::DescribeItems.perform(@state)
@@ -39,17 +36,19 @@ class Main
       puts items_text if items_text.present?
       puts
 
-      break if endgame_condition == "died" || endgame_condition == "won"
+      break unless ::Endgame.condition(@state) == "in_progress"
 
       print ::Text.colorize("> ", 1)
       input_text = gets.chomp
-      response = parse_and_execute(input_text)
+      command = parse(input_text)
+      response = execute(command)
       puts ::Text.colorize(response, 0, 33) if response.present?
+
       @state.player.turn_count += 1
+      break if @state.player.quitting
     end
 
-    puts "#{::Endgame.message(@state)}\n\n"
-    puts "Number of turns: #{@state.player.turn_count}\n\n"
+    puts ::Endgame.message(@state)
   end
 
   def self.set_adventure
@@ -65,10 +64,9 @@ class Main
   end
 
   # @param [String] input_text
-  # @return [String (frozen)]
-  def self.parse_and_execute(input_text)
-    command = ::ParseInput.perform(input_text, @state, @rules)
-    execute(command)
+  # @return [::Command]
+  def self.parse(input_text)
+    ::ParseInput.perform(input_text, @state, @rules)
   end
 
   # @param [::Command] command

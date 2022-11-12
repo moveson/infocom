@@ -11,7 +11,7 @@ module Verb
 
     def contextual_response
       state.player.quitting = true
-      ""
+      "Hope to see you again soon. Bye!"
     end
   end
 end

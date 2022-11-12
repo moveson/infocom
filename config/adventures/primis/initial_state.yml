@@ -5,6 +5,17 @@ player:
   location_id: quiet_meadow
   health: 10
 
+messages:
+  welcome: |+
+    Welcome to Primis! This is a mini adventure to help you learn how to play the game.
+    Type 'help' for instructions.
+  won: |+
+    You have reunited the sword with its home. 
+    Congratulations, you won!
+  lost: |+
+    You have died. 
+    Please try again, and watch your step.
+
 locations:
 - id: quiet_meadow
   name: quiet meadow

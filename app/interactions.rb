@@ -11,6 +11,10 @@ class Interactions
     takeable_items(state).include?(item)
   end
 
+  def self.item_visible?(item, state)
+    visible_items(state).include?(item)
+  end
+
   def self.items_in_possession(state)
     visible_children = state.inventory.flat_map { |item| visible_children_of_item(item, state) }
     state.inventory + visible_children

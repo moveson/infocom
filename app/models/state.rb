@@ -8,6 +8,7 @@ require "./app/models/player"
 State = Struct.new(
   :adventure,
   :player,
+  :messages,
   :items,
   :locations,
   :characters,
@@ -18,6 +19,7 @@ State = Struct.new(
   def initialize(*)
     super
     self.player ||= ::Player.new
+    self.messages ||= {}
     self.items ||= []
     self.locations ||= []
     self.characters ||= []
@@ -67,6 +69,7 @@ State = Struct.new(
     hash = {
       adventure: adventure,
       player: player.to_h,
+      messages: messages.to_h,
       items: items.map(&:to_h),
       locations: locations.map(&:to_h),
       characters: characters.map(&:to_h),

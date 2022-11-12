@@ -51,6 +51,7 @@ class Persist
     hash = ::YAML.load(File.read(file_path))
     state.adventure = hash["adventure"]
     state.player = ::Player.new(hash["player"])
+    state.messages = hash["messages"]
     state.items = hash["items"].map { |item_attributes| ::Item.new(item_attributes) }
     state.locations = hash["locations"].map { |location_attributes| ::Location.new(location_attributes) }
     state.characters = hash["characters"].map { |character_attributes| ::Character.new(character_attributes) }

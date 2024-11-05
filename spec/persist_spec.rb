@@ -142,6 +142,7 @@ RSpec.describe ::Persist do
           health: 10
           turn_count: 0
           quitting: false
+        messages: {}
         items:
         - id: sword
           name: engraved sword

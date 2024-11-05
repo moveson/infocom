@@ -3,6 +3,7 @@
 require "./app/endgame"
 require "./app/models/item"
 require "./app/models/state"
+require "active_support/core_ext/string"
 
 RSpec.describe ::Endgame do
   describe ".condition" do
@@ -13,6 +14,7 @@ RSpec.describe ::Endgame do
     let(:player_health) { 10 }
 
     before do
+      state.adventure = "primis"
       state.player_location_id = player_location_id
       state.player.health = player_health
       state.items = [::Item.new(id: "sword", location_key: sword_location_key)]
@@ -46,7 +48,7 @@ RSpec.describe ::Endgame do
     context "when health falls to 0" do
       let(:player_health) { 0 }
 
-      it { expect(result).to eq("died") }
+      it { expect(result).to eq("lost") }
     end
   end
 end

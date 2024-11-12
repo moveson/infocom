@@ -41,6 +41,11 @@ RSpec.describe ::ParseInput do
       end
     end
 
+    context "when command is help" do
+      let(:command) { "help" }
+      it { expect(result).to eq(::Command.new(verb: "help")) }
+    end
+
     context "when command is one word with a one-word synonym" do
       let(:command) { "inv" }
       it { expect(result).to eq(::Command.new(verb: "inventory")) }

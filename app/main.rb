@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "active_support/core_ext/string/inflections"
+require "active_support/core_ext/object/blank"
 
 require "./app/build_initial_state"
 require "./app/describe_characters"

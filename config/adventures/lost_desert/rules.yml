@@ -1,0 +1,67 @@
+---
+# Words matching these keys will be replaced with the respective values
+synonyms:
+  # Directions
+  d: down
+  e: east
+  n: north
+  s: south
+  w: west
+  u: up
+
+  # Verbs
+  attack: kill
+  boogie: dance
+  catch: get
+  examine: describe
+  grab: get
+  how: what
+  inspect: describe
+  inv: inventory
+  moonwalk: dance
+  move: go
+  murder: kill
+  place: put
+  observe: describe
+  run: go
+  speak: talk
+  take: get
+  travel: go
+  walk: go
+  waltz: dance
+  when: what
+  where: what
+  who: what
+  why: what
+
+  # Nouns
+  forest: trees
+  grove: trees
+  myself: self
+  oak: tree
+
+  # Prepositions
+  into: in
+  onto: "on"
+  within: in
+
+  # Multi-word synonyms
+  talk_to: talk
+  sing_to: sing
+
+# These words will be ignored entirely
+ignored_words:
+- a
+- an
+- the
+
+# If a word matching any of the following keys is found in the
+# first word (verb) position, the associated value will be added in the
+# first word position.
+implicit_verbs:
+  down: go
+  east: go
+  north: go
+  south: go
+  west: go
+  up: go

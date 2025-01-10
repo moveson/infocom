@@ -18,4 +18,4 @@ License
 Copyright
 ---------
 
-Copyright (c) 2022 by Mark Oveson. See license for details.
+Copyright (c) 2025 by Mark Oveson. See license for details.

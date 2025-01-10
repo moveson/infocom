@@ -8,6 +8,7 @@ Character = Struct.new(
   :location_key,
   :reactions,
   :trades,
+  :visible,
   keyword_init: true
 ) do
 

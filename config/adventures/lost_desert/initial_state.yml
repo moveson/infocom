@@ -1,0 +1,50 @@
+---
+adventure: lost_desert
+
+player:
+  location_id: salt_flats
+  health: 10
+
+messages:
+  welcome: |+
+    This is the Lost Desert Adventure.
+    Type 'help' for instructions.
+  won: |+
+    Congratulations, you won!
+  lost: |+
+    You have died. Please try again.
+
+locations:
+- id: salt_flats
+  name: salt flats
+  description:
+    general: A vast, flat landscape of dry, cracked tiles. Only the smallest breeze can be felt in the hot sun.
+    tiles: The tiles appear to be made of dried salt, created by the drying and cracking of the flat.
+  movements:
+    east:
+      location_id: great_dunes
+    south:
+      location_id: stone_ruins
+- id: great_dunes
+  name: great dunes
+  description:
+    general: Massive sandy dunes loom before you, shifting slightly in the wind.
+    dunes: The sand dunes make a hissing noise as they shift, but that isn't the only thing hissing. A large cobra seems to be guarding it's nest.
+    cobra: It's forked tongue slithers in and out of bared fangs. Another loud hiss signals it doesn't take visitors very kindly...
+  movements:
+    south:
+      location_id: mossy_temple
+    west:
+      location_id: salt_flats
+
+items: []
+
+characters:
+  - id: cobra
+    name: large cobra
+    description: The snake twists and coils as it slithers and hisses menacingly.
+    location_key: great_dunes
+    visible: false
+    reactions:
+      get: You reach out to grab the writhing serpent, but it recoils and spits venom at you.
+      kill: Fists ready, you attempt to kill the snake, but right before you're blow hits, the cobra suddenly leaps out and bites you with venomous fangs.

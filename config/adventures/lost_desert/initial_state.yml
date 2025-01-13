@@ -36,8 +36,59 @@ locations:
       location_id: mossy_temple
     west:
       location_id: salt_flats
+- id: stone_ruins
+  name: stone ruins
+  description:
+    general: Mossy boulders and pillars surround you, some of them carved with engravings.
+    stone: As you look closer, you see that the stone is covered in markings, resembling some sort of ancient writing.
+    engravings: The markings resemble humans bowing down and giving offerings to snake-like creatures, which they seemed to worship.
+  movements:
+    north:
+      location_id: dry_desert
+    east:
+      location_id: mossy_temple
+    west:
+      location_id: willow_forest
+- id: mossy_temple
+  name: ruinous temple
+  description:
+    general: A large, stone structure resembling some sort of ancient temple.
+    temple: The building is falling apart, and only one front pillar remains intact. You also notice a glass bottle sitting in front of the temple.
+    pillar: Cracks run through the carved stone, and it seems like the pillar won't hold for much longer. You can make out rough pictures of snakes embellished in the stone.
+    bottle: Interestingly enough, the bottle is engraved with the same riddle the stone had, but contains a new verse as well.
+  movements:
+    north:
+      location_id: great_dunes
+    west:
+      location_id: stone_ruins
+- id: willow_forest
+  name: weeping willow forest
+  description:
+    general: A peaceful grove of blossoming willow trees lay before you, swaying in the cool breeze.
+    trees: The trees are all closely packed together, and a pair of snow boots lay nestled in one of the tree's thick roots.
+    boots: The old boots are tattered and worn, but still look usable for good traction in snowy terrain.
+  movements:
+    north:
+      location_id: snowy_mountains
+    east:
+      location_id: stone_ruins
+- id: snowy_mountains
+  name: snowy mountains
+  description:
+    general: High, icy peaks tower above the clouds, and freezing wind pelts you from all directions.
+    peaks: Higher than any other mountains you've seen before, these peaks are truly a magnificent sight. You also notice a chest up above you on a small ledge sticking out from the mountainside.
+    chest: The chest looks very battered and wet, but the chest's thick oak casing and heavy metal lock seem to be standing up to the wind very well.
+  movements:
+    south:
+      location_id: willow_forest
 
-items: []
+items:
+  - id: stone_tablet
+    name: ancient stone tablet
+    description: an old, square shaped stone, covered in ancient writing.
+    location_key: stone_ruins
+    size: 999
+    text: Cobra venom is required to fulfill the prophecy we desire.
 
 characters:
   - id: cobra
@@ -47,4 +98,7 @@ characters:
     visible: false
     reactions:
       get: You reach out to grab the writhing serpent, but it recoils and spits venom at you.
-      kill: Fists ready, you attempt to kill the snake, but right before you're blow hits, the cobra suddenly leaps out and bites you with venomous fangs.
+      kill: Fists ready, you strike, but the cobra strikes first. Fangs bared, it bites you viciously with venomous teeth.
+      put: I wouldn't recommend trying to put a venomous snake somewhere.
+      eat: It would rather eat you.
+

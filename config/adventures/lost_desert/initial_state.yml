@@ -20,6 +20,7 @@ locations:
   description:
     general: A vast, flat landscape of dry, cracked tiles. Only the smallest breeze can be felt in the hot sun.
     tiles: The tiles appear to be made of dried salt, created by the drying and cracking of the flat.
+    eat: mmm... salty!
   movements:
     east:
       location_id: great_dunes
@@ -29,13 +30,23 @@ locations:
   name: great dunes
   description:
     general: Massive sandy dunes loom before you, shifting slightly in the wind.
-    dunes: The sand dunes make a hissing noise as they shift, but that isn't the only thing hissing. A large cobra seems to be guarding it's nest.
-    cobra: It's forked tongue slithers in and out of bared fangs. Another loud hiss signals it doesn't take visitors very kindly...
+    dunes: The dunes are all very tall, but one of them in the middle towers over the others.
+    eat: If you want a mouthful of sand, then sure.
   movements:
     south:
       location_id: mossy_temple
     west:
       location_id: salt_flats
+    up:
+      location_id: top_of_dune
+- id: top_of_dune
+  name: top of great dune
+  description:
+    general: You trek to the top of the sand dune, shielding your eyes from the blazing sun. You notice
+    cobra: Its forked tongue slithers in and out of bared fangs. A loud hiss signals it doesn't take visitors very kindly...
+  movements:
+    down:
+      location_id: great_dunes
 - id: stone_ruins
   name: stone ruins
   description:
@@ -44,7 +55,7 @@ locations:
     engravings: The markings resemble humans bowing down and giving offerings to snake-like creatures, which they seemed to worship.
   movements:
     north:
-      location_id: dry_desert
+      location_id: salt_flats
     east:
       location_id: mossy_temple
     west:
@@ -77,13 +88,15 @@ locations:
   description:
     general: High, icy peaks tower above the clouds, and freezing wind pelts you from all directions.
     peaks: Higher than any other mountains you've seen before, these peaks are truly a magnificent sight. You also notice a chest up above you on a small ledge sticking out from the mountainside.
-    chest: The chest looks very battered and wet, but the chest's thick oak casing and heavy metal lock seem to be standing up to the wind very well.
+    chest: The chest looks very battered and wet, but its thick oak casing and heavy metal lock seem to be standing up to the wind very well.
   movements:
     south:
       location_id: willow_forest
 
 items:
-  - id: stone_tablet
+  - id: tablet
+    alternate_names:
+      - stone
     name: ancient stone tablet
     description: an old, square shaped stone, covered in ancient writing.
     location_key: stone_ruins
@@ -93,12 +106,11 @@ items:
 characters:
   - id: cobra
     name: large cobra
-    description: The snake twists and coils as it slithers and hisses menacingly.
-    location_key: great_dunes
+    description: a large cobra, protectively guarding its nest.
+    location_key: top_of_dune
     visible: false
     reactions:
-      get: You reach out to grab the writhing serpent, but it recoils and spits venom at you.
-      kill: Fists ready, you strike, but the cobra strikes first. Fangs bared, it bites you viciously with venomous teeth.
-      put: I wouldn't recommend trying to put a venomous snake somewhere.
+      get: You reach out to grab the serpent, but it recoils and spits venom at you.
+      kill: You strike, but the cobra strikes first. Fangs bared, it bites you viciously with venomous teeth.
+      put: I wouldn't recommend trying to put a snake somewhere.
       eat: It would rather eat you.
-

@@ -3,6 +3,7 @@
 Item = Struct.new(
   :id,
   :name,
+  :alternate_names,
   :description,
   :described,
   :text,

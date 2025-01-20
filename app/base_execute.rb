@@ -13,7 +13,7 @@ class BaseExecute
     new(command, state).execute
   end
 
-  # @param [String] command
+  # @param [Command] command
   # @param [State] state
   def initialize(command, state)
     @command = command

@@ -56,13 +56,14 @@ class Main
 
   def self.set_adventure
     available_adventures = Dir["#{::Constants::ADVENTURES_DIRECTORY}/*"].map { |path| path.split("/").last }
+    display_adventures = available_adventures.map { |adventure| adventure.titleize }
     puts "Available adventures are:"
-    available_adventures.each { |adventure_name| puts "  #{adventure_name}" }
+    display_adventures.each { |adventure_name| puts "  #{adventure_name}" }
     puts
 
     while !available_adventures.include?(@adventure) && @adventure != "quit" do
       print ::Text.colorize("Choose an adventure > ", 1)
-      @adventure = gets.chomp
+      @adventure = gets.chomp.parameterize(separator: "_")
     end
   end
 

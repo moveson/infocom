@@ -11,7 +11,7 @@ module LostDesert
     # @param [::State] state
     # @return [Boolean]
     def self.lost?(state)
-      false
+      state.player.health <= 0
     end
   end
 end

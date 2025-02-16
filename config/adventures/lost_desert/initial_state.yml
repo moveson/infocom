@@ -108,9 +108,6 @@ characters:
     name: large cobra
     description: a large cobra, protectively guarding its nest.
     location_key: top_of_dune
-    visible: false
     reactions:
-      get: You reach out to grab the serpent, but it recoils and spits venom at you.
-      kill: You strike, but the cobra strikes first. Fangs bared, it bites you viciously with venomous teeth.
       put: I wouldn't recommend trying to put a snake somewhere.
       eat: It would rather eat you.

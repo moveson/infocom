@@ -15,6 +15,7 @@ require "./config/constants"
 
 require "./app/base_execute"
 Dir["./app/verb/*.rb"].each { |file| require file }
+Dir["./config/adventures/lost_desert/verb/*.rb"].each { |file| require file }
 
 class Main
   def self.start
@@ -79,12 +80,17 @@ class Main
     verb = command.verb
     return "" if verb.blank?
 
-    verb_class = "::Verb::#{verb.classify}".safe_constantize
+    verb_class = class_for_verb(verb)
 
     if verb_class.present?
       verb_class.execute(command, @state)
     else
       "I don't know how to #{verb}."
     end
+  end
+
+  def self.class_for_verb(verb)
+    "#{@adventure.classify}::Verb::#{verb.classify}".safe_constantize ||
+      "::Verb::#{verb.classify}".safe_constantize
   end
 end

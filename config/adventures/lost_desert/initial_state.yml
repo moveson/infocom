@@ -88,11 +88,21 @@ locations:
   description:
     general: High, icy peaks tower above the clouds, and freezing wind pelts you from all directions.
     peaks: Higher than any other mountains you've seen before, these peaks are truly a magnificent sight. You also notice a chest up above you on a small ledge sticking out from the mountainside.
-    chest: The chest looks very battered and wet, but its thick oak casing and heavy metal lock seem to be standing up to the wind very well.
   movements:
     south:
       location_id: willow_forest
-
+- id: icy_ledge
+  name: icy ledge
+  description:
+    general: The snow boots provide very good grip, and you manage to clamber to the top.
+    chest: The chest looks very battered and wet, but its thick oak casing and heavy metal lock seem to be standing up to the wind very well.
+  movements:
+    down:
+      location_id: snowy_mountains
+- id: bottom_of_gorge
+  name: bottom of gorge
+  description:
+    general: Everything fades to black.
 items:
   - id: tablet
     alternate_names:
@@ -102,6 +112,13 @@ items:
     location_key: stone_ruins
     size: 999
     text: Cobra venom is required to fulfill the prophecy we desire.
+  - id: snow_boots
+    alternate_names:
+      - boots
+    name: snow boots
+    description: a tattered pair of over sized snow boots.
+    location_key: willow_forest
+    size: 5
 
 characters:
   - id: cobra
